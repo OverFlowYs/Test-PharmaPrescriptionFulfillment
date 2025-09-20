@@ -7,7 +7,8 @@
 [![Pinia](https://img.shields.io/badge/Pinia-2.1.0-FFD700?style=flat-square&logo=pinia)](https://pinia.vuejs.org/)
 [![Vitest](https://img.shields.io/badge/Vitest-1.0.0-6E9F18?style=flat-square&logo=vitest)](https://vitest.dev/)
 
-一个基于 Vue 3 + TypeScript + Vite 构建的现代化药品处方管理系统，提供完整的药品管理、处方管理、药房管理和审计日志功能。
+一个基于 Vue 3 + TypeScript +
+Vite 构建的现代化药品处方管理系统，提供完整的药品管理、处方管理、药房管理和审计日志功能。
 
 ## 📋 目录
 
@@ -26,23 +27,27 @@
 ## ✨ 功能特性
 
 ### 🏥 核心功能
+
 - **药品管理**: 药品的增删改查、库存管理、过期提醒
 - **处方管理**: 处方创建、审核、执行状态跟踪
 - **药房管理**: 药房信息管理、库存统计
 - **审计日志**: 完整的操作记录和审计追踪
 
 ### 🔐 用户认证
+
 - **用户登录**: 支持用户名/密码登录
 - **用户注册**: 新用户注册功能
 - **验证码**: 图形验证码安全验证
 - **权限控制**: 基于角色的访问控制
 
 ### 📊 数据可视化
+
 - **仪表板**: 实时数据统计和图表展示
 - **库存监控**: 低库存预警、过期药品提醒
 - **操作统计**: 用户操作统计和趋势分析
 
 ### 🎨 用户体验
+
 - **响应式设计**: 支持桌面端和移动端
 - **现代化 UI**: 基于 Element Plus 的美观界面
 - **实时更新**: 数据实时同步和状态更新
@@ -51,22 +56,26 @@
 ## 🛠 技术栈
 
 ### 前端框架
+
 - **Vue 3.4.0**: 渐进式 JavaScript 框架
 - **TypeScript 5.0.0**: 类型安全的 JavaScript 超集
 - **Vite 5.0.0**: 下一代前端构建工具
 
 ### UI 组件库
+
 - **Element Plus 2.4.0**: 基于 Vue 3 的桌面端组件库
 - **Vue Router 4**: 官方路由管理器
 - **Pinia 2.1.0**: 现代状态管理库
 
 ### 开发工具
+
 - **ESLint**: 代码质量检查
 - **Prettier**: 代码格式化
 - **Vitest**: 单元测试框架
 - **Vue Test Utils**: Vue 组件测试工具
 
 ### 构建和部署
+
 - **Vite**: 快速构建和热重载
 - **PostCSS**: CSS 后处理器
 - **SCSS**: CSS 预处理器
@@ -259,7 +268,7 @@ git commit -m "docs: 更新 API 文档"
 在 `src/router.ts` 中配置路由：
 
 ```typescript
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -267,11 +276,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'Dashboard',
-      component: () => import('./pages/Dashboard.vue')
-    }
+      component: () => import('./pages/Dashboard.vue'),
+    },
     // ... 其他路由
-  ]
-})
+  ],
+});
 ```
 
 ## 🧪 测试
@@ -353,11 +362,13 @@ CMD ["nginx", "-g", "daemon off;"]
 ### 药品管理 API
 
 #### 获取药品列表
+
 ```http
 GET /api/drugs
 ```
 
 #### 添加药品
+
 ```http
 POST /api/drugs
 Content-Type: application/json
@@ -372,6 +383,7 @@ Content-Type: application/json
 ```
 
 #### 更新药品
+
 ```http
 PUT /api/drugs/:id
 Content-Type: application/json
@@ -383,6 +395,7 @@ Content-Type: application/json
 ```
 
 #### 删除药品
+
 ```http
 DELETE /api/drugs/:id
 ```
@@ -390,6 +403,7 @@ DELETE /api/drugs/:id
 ### 认证 API
 
 #### 用户登录
+
 ```http
 POST /api/auth/login
 Content-Type: application/json
@@ -402,6 +416,7 @@ Content-Type: application/json
 ```
 
 #### 用户注册
+
 ```http
 POST /api/auth/register
 Content-Type: application/json

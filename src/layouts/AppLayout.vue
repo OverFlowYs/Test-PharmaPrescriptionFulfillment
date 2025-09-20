@@ -1,11 +1,13 @@
 <template>
-  <el-container style="height:100vh">
-    <el-aside width="200px" style="background-color: #304156;">
+  <el-container style="height: 100vh">
+    <el-aside width="200px" style="background-color: #304156">
       <div class="logo">
-        <h3 style="color: white; text-align: center; margin: 20px 0;">药品管理系统</h3>
+        <h3 style="color: white; text-align: center; margin: 20px 0">
+          药品管理系统
+        </h3>
       </div>
-      <el-menu 
-        :default-active="$route.path" 
+      <el-menu
+        :default-active="$route.path"
         router
         background-color="#304156"
         text-color="#bfcbd9"
@@ -34,7 +36,15 @@
       </el-menu>
     </el-aside>
     <el-container>
-      <el-header style="background-color: #fff; border-bottom: 1px solid #e6e6e6; display: flex; align-items: center; justify-content: space-between;">
+      <el-header
+        style="
+          background-color: #fff;
+          border-bottom: 1px solid #e6e6e6;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
         <div class="header-left">
           <div class="system-logo" @click="goToDashboard">
             <el-icon class="logo-icon"><ShoppingBag /></el-icon>
@@ -46,7 +56,7 @@
             <el-icon><Refresh /></el-icon>
             刷新数据
           </el-button>
-          
+
           <el-dropdown @command="handleCommand">
             <div class="user-info">
               <el-avatar :size="32" :src="userAvatar">
@@ -74,7 +84,7 @@
           </el-dropdown>
         </div>
       </el-header>
-      <el-main style="background-color: #f5f5f5; padding: 20px;">
+      <el-main style="background-color: #f5f5f5; padding: 20px">
         <RouterView />
       </el-main>
     </el-container>
@@ -82,65 +92,65 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import { 
-  House, 
-  ShoppingBag, 
-  Shop, 
-  Document, 
-  List, 
-  Refresh, 
-  User, 
-  ArrowDown, 
-  Setting, 
-  SwitchButton 
-} from '@element-plus/icons-vue'
-import { useAuthStore } from '../stores/auth'
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import {
+  House,
+  ShoppingBag,
+  Shop,
+  Document,
+  List,
+  Refresh,
+  User,
+  ArrowDown,
+  Setting,
+  SwitchButton,
+} from '@element-plus/icons-vue';
+import { useAuthStore } from '../stores/auth';
 
-const router = useRouter()
-const authStore = useAuthStore()
+const router = useRouter();
+const authStore = useAuthStore();
 
 const userAvatar = computed(() => {
   // 可以根据用户信息生成头像
-  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${authStore.user?.username}`
-})
+  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${authStore.user?.username}`;
+});
 
 const goToDashboard = () => {
-  router.push('/')
-}
+  router.push('/');
+};
 
 const refreshData = () => {
   // 刷新当前页面数据
-  window.location.reload()
-}
+  window.location.reload();
+};
 
 const handleCommand = async (command: string) => {
   switch (command) {
     case 'profile':
-      ElMessage.info('个人资料功能开发中...')
-      break
+      ElMessage.info('个人资料功能开发中...');
+      break;
     case 'settings':
-      ElMessage.info('系统设置功能开发中...')
-      break
+      ElMessage.info('系统设置功能开发中...');
+      break;
     case 'logout':
       try {
         await ElMessageBox.confirm('确定要退出登录吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
-        })
-        
-        await authStore.logoutUser()
-        ElMessage.success('已退出登录')
-        router.push('/login')
+          type: 'warning',
+        });
+
+        await authStore.logoutUser();
+        ElMessage.success('已退出登录');
+        router.push('/login');
       } catch (error) {
         // 用户取消
       }
-      break
+      break;
   }
-}
+};
 </script>
 
 <style scoped>
@@ -162,7 +172,7 @@ const handleCommand = async (command: string) => {
 }
 
 .el-menu-item.is-active {
-  background-color: #409EFF !important;
+  background-color: #409eff !important;
   color: white !important;
 }
 
@@ -189,7 +199,7 @@ const handleCommand = async (command: string) => {
 
 .logo-icon {
   font-size: 28px;
-  color: #409EFF;
+  color: #409eff;
 }
 
 .system-title {
@@ -197,7 +207,7 @@ const handleCommand = async (command: string) => {
   color: #303133;
   font-size: 24px;
   font-weight: bold;
-  background: linear-gradient(135deg, #409EFF 0%, #67c23a 100%);
+  background: linear-gradient(135deg, #409eff 0%, #67c23a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -246,11 +256,11 @@ const handleCommand = async (command: string) => {
   .system-title {
     font-size: 18px;
   }
-  
+
   .logo-icon {
     font-size: 24px;
   }
-  
+
   .system-logo {
     padding: 6px 12px;
   }

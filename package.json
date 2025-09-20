@@ -12,7 +12,12 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "format:staged": "prettier --write",
+    "type-check": "vue-tsc --noEmit",
+    "check-all": "npm run type-check && npm run lint && npm run format:check"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -51,9 +56,12 @@
     "vue-tsc": "^3.0.5"
   },
   "lint-staged": {
-    "*.{ts,tsx,vue,js}": [
+    "*.{ts,tsx,vue,js,jsx}": [
       "eslint --fix",
-      "git add"
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
     ]
   },
   "msw": {

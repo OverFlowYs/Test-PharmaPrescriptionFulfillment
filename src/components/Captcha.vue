@@ -19,120 +19,126 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
-import { Refresh } from '@element-plus/icons-vue'
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-  (e: 'change', value: string): void
-}>()
+import { ref, onMounted, nextTick } from 'vue';
+import { Refresh } from '@element-plus/icons-vue';
 
 const props = defineProps<{
-  modelValue: string
-}>()
+  modelValue: string;
+}>();
 
-const canvasRef = ref<HTMLCanvasElement>()
-const inputValue = ref(props.modelValue)
-const captchaText = ref('')
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void;
+  (e: 'change', value: string): void;
+}>();
+
+const canvasRef = ref<HTMLCanvasElement>();
+const inputValue = ref(props.modelValue);
+const captchaText = ref('');
 
 // 生成随机验证码
 const generateCaptcha = () => {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  let result = ''
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
   for (let i = 0; i < 4; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length))
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  return result
-}
+  return result;
+};
 
 // 绘制验证码
 const drawCaptcha = () => {
-  if (!canvasRef.value) return
-  
-  const canvas = canvasRef.value
-  const ctx = canvas.getContext('2d')
-  if (!ctx) return
-  
+  if (!canvasRef.value) return;
+
+  const canvas = canvasRef.value;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
   // 清空画布
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   // 设置背景
-  ctx.fillStyle = '#f5f5f5'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-  
+  ctx.fillStyle = '#f5f5f5';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   // 添加干扰线
   for (let i = 0; i < 5; i++) {
-    ctx.strokeStyle = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.3)`
-    ctx.beginPath()
-    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height)
-    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height)
-    ctx.stroke()
+    ctx.strokeStyle = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.3)`;
+    ctx.beginPath();
+    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+    ctx.stroke();
   }
-  
+
   // 添加干扰点
   for (let i = 0; i < 30; i++) {
-    ctx.fillStyle = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
-    ctx.beginPath()
-    ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1, 0, 2 * Math.PI)
-    ctx.fill()
+    ctx.fillStyle = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`;
+    ctx.beginPath();
+    ctx.arc(
+      Math.random() * canvas.width,
+      Math.random() * canvas.height,
+      1,
+      0,
+      2 * Math.PI
+    );
+    ctx.fill();
   }
-  
+
   // 绘制文字
-  ctx.font = 'bold 20px Arial'
-  ctx.textAlign = 'center'
-  ctx.textBaseline = 'middle'
-  
+  ctx.font = 'bold 20px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
   for (let i = 0; i < captchaText.value.length; i++) {
-    const x = (canvas.width / 4) * (i + 0.5)
-    const y = canvas.height / 2 + (Math.random() - 0.5) * 10
-    
+    const x = (canvas.width / 4) * (i + 0.5);
+    const y = canvas.height / 2 + (Math.random() - 0.5) * 10;
+
     // 随机颜色
-    ctx.fillStyle = `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`
-    
+    ctx.fillStyle = `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
+
     // 随机旋转
-    ctx.save()
-    ctx.translate(x, y)
-    ctx.rotate((Math.random() - 0.5) * 0.5)
-    ctx.fillText(captchaText.value[i], 0, 0)
-    ctx.restore()
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate((Math.random() - 0.5) * 0.5);
+    ctx.fillText(captchaText.value[i], 0, 0);
+    ctx.restore();
   }
-}
+};
 
 // 刷新验证码
 const refreshCaptcha = () => {
-  captchaText.value = generateCaptcha()
-  drawCaptcha()
-  inputValue.value = ''
-  emit('update:modelValue', '')
-  emit('change', '')
-}
+  captchaText.value = generateCaptcha();
+  drawCaptcha();
+  inputValue.value = '';
+  emit('update:modelValue', '');
+  emit('change', '');
+};
 
 // 输入处理
 const onInput = (value: string) => {
-  emit('update:modelValue', value)
-  emit('change', value)
-}
+  emit('update:modelValue', value);
+  emit('change', value);
+};
 
 const onEnter = () => {
-  emit('change', inputValue.value)
-}
+  emit('change', inputValue.value);
+};
 
 // 验证验证码
 const verifyCaptcha = (input: string) => {
-  return input.toUpperCase() === captchaText.value.toUpperCase()
-}
+  return input.toUpperCase() === captchaText.value.toUpperCase();
+};
 
 // 暴露验证方法
 defineExpose({
   verifyCaptcha,
-  refreshCaptcha
-})
+  refreshCaptcha,
+});
 
 onMounted(() => {
   nextTick(() => {
-    refreshCaptcha()
-  })
-})
+    refreshCaptcha();
+  });
+});
 </script>
 
 <style scoped>

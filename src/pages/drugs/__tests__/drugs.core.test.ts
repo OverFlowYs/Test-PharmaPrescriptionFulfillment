@@ -1,17 +1,17 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { getDrugs, addDrug, updateDrug, deleteDrug } from '../../../api/drugs'
-import { api } from '../../../api/client'
-import type { Drug } from '../../../types/drug'
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { getDrugs, addDrug, updateDrug, deleteDrug } from '../../../api/drugs';
+import { api } from '../../../api/client';
+import type { Drug } from '../../../types/drug';
 
 // Mock the API client
 vi.mock('../../../api/client', () => ({
-  api: vi.fn()
-}))
+  api: vi.fn(),
+}));
 
 describe('Drug API Core Functions', () => {
   beforeEach(() => {
-    vi.clearAllMocks()
-  })
+    vi.clearAllMocks();
+  });
 
   describe('getDrugs', () => {
     it('should fetch drugs successfully', async () => {
@@ -23,25 +23,25 @@ describe('Drug API Core Functions', () => {
           batch: 'B202403',
           expiry: '2026-01-01',
           stock: 150,
-          limit: 200
-        }
-      ]
+          limit: 200,
+        },
+      ];
 
-      vi.mocked(api).mockResolvedValue(mockDrugs)
+      vi.mocked(api).mockResolvedValue(mockDrugs);
 
-      const result = await getDrugs()
+      const result = await getDrugs();
 
-      expect(api).toHaveBeenCalledWith('/drugs')
-      expect(result).toEqual(mockDrugs)
-    })
+      expect(api).toHaveBeenCalledWith('/drugs');
+      expect(result).toEqual(mockDrugs);
+    });
 
     it('should handle API errors', async () => {
-      const error = new Error('Network error')
-      vi.mocked(api).mockRejectedValue(error)
+      const error = new Error('Network error');
+      vi.mocked(api).mockRejectedValue(error);
 
-      await expect(getDrugs()).rejects.toThrow('Network error')
-    })
-  })
+      await expect(getDrugs()).rejects.toThrow('Network error');
+    });
+  });
 
   describe('addDrug', () => {
     it('should add drug successfully', async () => {
@@ -51,30 +51,30 @@ describe('Drug API Core Functions', () => {
         batch: 'B202404',
         expiry: '2025-12-31',
         stock: 80,
-        limit: 150
-      }
+        limit: 150,
+      };
 
       const createdDrug: Drug = {
         id: 'D002',
-        ...newDrug
-      }
+        ...newDrug,
+      };
 
-      vi.mocked(api).mockResolvedValue(createdDrug)
+      vi.mocked(api).mockResolvedValue(createdDrug);
 
-      const result = await addDrug(newDrug)
+      const result = await addDrug(newDrug);
 
       expect(api).toHaveBeenCalledWith('/drugs', {
         method: 'POST',
-        body: JSON.stringify(newDrug)
-      })
-      expect(result).toEqual(createdDrug)
-    })
-  })
+        body: JSON.stringify(newDrug),
+      });
+      expect(result).toEqual(createdDrug);
+    });
+  });
 
   describe('updateDrug', () => {
     it('should update drug successfully', async () => {
-      const drugId = 'D001'
-      const updates = { stock: 200 }
+      const drugId = 'D001';
+      const updates = { stock: 200 };
 
       const updatedDrug: Drug = {
         id: drugId,
@@ -83,32 +83,32 @@ describe('Drug API Core Functions', () => {
         batch: 'B202403',
         expiry: '2026-01-01',
         stock: 200,
-        limit: 200
-      }
+        limit: 200,
+      };
 
-      vi.mocked(api).mockResolvedValue(updatedDrug)
+      vi.mocked(api).mockResolvedValue(updatedDrug);
 
-      const result = await updateDrug(drugId, updates)
+      const result = await updateDrug(drugId, updates);
 
       expect(api).toHaveBeenCalledWith(`/drugs/${drugId}`, {
         method: 'PUT',
-        body: JSON.stringify(updates)
-      })
-      expect(result).toEqual(updatedDrug)
-    })
-  })
+        body: JSON.stringify(updates),
+      });
+      expect(result).toEqual(updatedDrug);
+    });
+  });
 
   describe('deleteDrug', () => {
     it('should delete drug successfully', async () => {
-      const drugId = 'D001'
+      const drugId = 'D001';
 
-      vi.mocked(api).mockResolvedValue(undefined)
+      vi.mocked(api).mockResolvedValue(undefined);
 
-      await deleteDrug(drugId)
+      await deleteDrug(drugId);
 
       expect(api).toHaveBeenCalledWith(`/drugs/${drugId}`, {
-        method: 'DELETE'
-      })
-    })
-  })
-})
+        method: 'DELETE',
+      });
+    });
+  });
+});
