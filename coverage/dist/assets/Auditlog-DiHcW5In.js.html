@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for dist/assets/Auditlog-DiHcW5In.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">dist/assets</a> Auditlog-DiHcW5In.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import{g as T}from"./audits-C6SEw7SU.js";import{d as $,r as _,n as j,c as f,o as p,b as v,e,L as G,w as l,g as s,M as H,K as k,E as J,h as d,t as r,D as E,F as O,B as P}from"./index-HvR_NwB1.js";import"./client-CvWrZdCA.js";const Q={key:0},W={key:0},le=$({__name:"Auditlog",setup(X){const b=_(!1),w=_([]),g=_(!1),o=_(null),u=_({patientId:"",pharmacyId:"",status:""}),y=async()=&gt;{b.value=!0;try{w.value=await T(u.value)}catch(i){J.error(i?.message||"加载失败")}finally{b.value=!1}},U=()=&gt;{y()},L=()=&gt;{u.value={patientId:"",pharmacyId:"",status:""},y()},x=i=&gt;{o.value=i,g.value=!0},D=i=&gt;new Date(i).toLocaleString("zh-CN");return j(y),(i,t)=&gt;{const S=s("el-input"),c=s("el-form-item"),V=s("el-option"),B=s("el-select"),I=s("el-button"),F=s("el-form"),z=s("el-card"),n=s("el-table-column"),h=s("el-tag"),C=s("el-table"),m=s("el-descriptions-item"),A=s("el-descriptions"),R=s("el-divider"),M=s("el-alert"),q=s("el-dialog"),K=H("loading");return p(),f("div",null,[t[10]||(t[10]=v("h2",null,"审计日志",-1)),e(z,{class:"mb-4"},{default:l(()=&gt;[e(F,{model:u.value,inline:""},{default:l(()=&gt;[e(c,{label:"患者ID"},{default:l(()=&gt;[e(S,{modelValue:u.value.patientId,"onUpdate:modelValue":t[0]||(t[0]=a=&gt;u.value.patientId=a),placeholder:"输入患者ID",clearable:""},null,8,["modelValue"])]),_:1}),e(c,{label:"药房ID"},{default:l(()=&gt;[e(S,{modelValue:u.value.pharmacyId,"onUpdate:modelValue":t[1]||(t[1]=a=&gt;u.value.pharmacyId=a),placeholder:"输入药房ID",clearable:""},null,8,["modelValue"])]),_:1}),e(c,{label:"状态"},{default:l(()=&gt;[e(B,{modelValue:u.value.status,"onUpdate:modelValue":t[2]||(t[2]=a=&gt;u.value.status=a),placeholder:"选择状态",clearable:""},{default:l(()=&gt;[e(V,{label:"成功",value:"SUCCESS"}),e(V,{label:"失败",value:"FAILED"})]),_:1},8,["modelValue"])]),_:1}),e(c,null,{default:l(()=&gt;[e(I,{type:"primary",onClick:U},{default:l(()=&gt;[...t[4]||(t[4]=[d("筛选",-1)])]),_:1}),e(I,{onClick:L},{default:l(()=&gt;[...t[5]||(t[5]=[d("重置",-1)])]),_:1})]),_:1})]),_:1},8,["model"])]),_:1}),G((p(),k(C,{data:w.value,style:{width:"100%"}},{default:l(()=&gt;[e(n,{prop:"prescriptionId",label:"处方ID",width:"120"}),e(n,{prop:"patientName",label:"患者姓名",width:"120"}),e(n,{prop:"pharmacyName",label:"药房",width:"150"}),e(n,{prop:"status",label:"状态",width:"100"},{default:l(({row:a})=&gt;[e(h,{type:a.status==="SUCCESS"?"success":"danger"},{default:l(()=&gt;[d(r(a.status==="SUCCESS"?"成功":"失败"),1)]),_:2},1032,["type"])]),_:1}),e(n,{prop:"timestamp",label:"时间",width:"180"},{default:l(({row:a})=&gt;[d(r(D(a.timestamp)),1)]),_:1}),e(n,{label:"操作",width:"120"},{default:l(({row:a})=&gt;[e(I,{type:"primary",size:"small",onClick:N=&gt;x(a)},{default:l(()=&gt;[...t[6]||(t[6]=[d(" 查看详情 ",-1)])]),_:1},8,["onClick"])]),_:1})]),_:1},8,["data"])),[[K,b.value]]),e(q,{modelValue:g.value,"onUpdate:modelValue":t[3]||(t[3]=a=&gt;g.value=a),title:"审计日志详情",width:"800px"},{default:l(()=&gt;[o.value?(p(),f("div",Q,[e(A,{column:2,border:""},{default:l(()=&gt;[e(m,{label:"处方ID"},{default:l(()=&gt;[d(r(o.value.prescriptionId),1)]),_:1}),e(m,{label:"患者"},{default:l(()=&gt;[d(r(o.value.patientName)+" ("+r(o.value.patientId)+")",1)]),_:1}),e(m,{label:"药房"},{default:l(()=&gt;[d(r(o.value.pharmacyName)+" ("+r(o.value.pharmacyId)+")",1)]),_:1}),e(m,{label:"状态"},{default:l(()=&gt;[e(h,{type:o.value.status==="SUCCESS"?"success":"danger"},{default:l(()=&gt;[d(r(o.value.status==="SUCCESS"?"成功":"失败"),1)]),_:1},8,["type"])]),_:1}),e(m,{label:"时间"},{default:l(()=&gt;[d(r(D(o.value.timestamp)),1)]),_:1})]),_:1}),e(R),t[8]||(t[8]=v("h4",null,"请求的药品",-1)),e(C,{data:o.value.drugsRequested,size:"small"},{default:l(()=&gt;[e(n,{prop:"drugId",label:"药品ID",width:"100"}),e(n,{prop:"drugName",label:"药品名称"}),e(n,{prop:"dosage",label:"剂量",width:"100"})]),_:1},8,["data"]),t[9]||(t[9]=v("h4",null,"分发的药品",-1)),e(C,{data:o.value.drugsDispensed,size:"small"},{default:l(()=&gt;[e(n,{prop:"drugId",label:"药品ID",width:"100"}),e(n,{prop:"drugName",label:"药品名称"}),e(n,{prop:"dosage",label:"剂量",width:"100"})]),_:1},8,["data"]),o.value.failureReasons&amp;&amp;o.value.failureReasons.length&gt;0?(p(),f("div",W,[t[7]||(t[7]=v("h4",null,"失败原因",-1)),(p(!0),f(O,null,P(o.value.failureReasons,(a,N)=&gt;(p(),k(M,{key:N,title:a,type:"error",closable:!1,class:"mb-2"},null,8,["title"]))),128))])):E("",!0)])):E("",!0)]),_:1},8,["modelValue"])])}}});export{le as default};<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-09-19T08:56:50.992Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    

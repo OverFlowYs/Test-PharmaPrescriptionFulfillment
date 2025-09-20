@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius-md: 10px;
+}
+.el-card {
+  border-radius: var(--radius-md);
+}
+body{
+  margin: 0;
+}

@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for dist/assets/Dashboard-pf645s_2.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">dist/assets</a> Dashboard-pf645s_2.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import{d as Y,r as F,v as D,n as Z,c as h,o as v,b as s,e as t,w as e,g,j as c,x as $,t as o,y as x,z as P,A as S,F as T,B as G,i as tt,h as m,C as st,D as N,G as U,H as z,I as at,J as B,_ as et}from"./index-HvR_NwB1.js";import{g as lt}from"./drugs-D42j0t9d.js";import{g as nt}from"./pharmacies-p8l6Znse.js";import{g as ot}from"./prescriptions-WTvZcZwT.js";import{g as ut}from"./audits-C6SEw7SU.js";import"./client-CvWrZdCA.js";const it={class:"dashboard"},ct={class:"stat-content"},dt={class:"stat-icon drugs"},rt={class:"stat-info"},_t={class:"stat-details"},pt={class:"stat-detail expired"},ft={class:"stat-detail low-stock"},ht={class:"stat-content"},vt={class:"stat-icon pharmacies"},gt={class:"stat-info"},mt={class:"stat-details"},Dt={class:"stat-detail active"},bt={class:"stat-detail total-drugs"},wt={class:"stat-content"},Lt={class:"stat-icon prescriptions"},kt={class:"stat-info"},It={class:"stat-details"},yt={class:"stat-detail pending"},Ft={class:"stat-detail success"},Et={class:"stat-content"},Nt={class:"stat-icon audits"},At={class:"stat-info"},Ct={class:"stat-details"},xt={class:"stat-detail failed"},Pt={class:"stat-detail success"},St={class:"chart-container"},Tt={class:"chart-placeholder"},Gt={class:"bar-label"},Ut={class:"bar-container"},zt={class:"bar-value"},Bt={class:"chart-container"},Vt={class:"chart-placeholder"},jt={class:"bar-label"},qt={class:"bar-container"},Ht={class:"bar-value"},Jt={class:"quick-actions"},Mt={class:"system-status"},Rt={class:"status-item"},Kt={class:"status-item"},Ot={key:0,class:"status-item"},Qt={key:1,class:"status-item"},Wt={key:2,class:"status-item"},Xt=Y({__name:"Dashboard",setup(Yt){const b=tt(),p=F([]),w=F([]),_=F([]),L=F([]),i=D(()=&gt;({drugs:{total:p.value.length,expired:p.value.filter(l=&gt;new Date(l.expiry)&lt;=new Date).length},pharmacies:{total:w.value.length,active:w.value.length},prescriptions:{total:_.value.length,pending:_.value.filter(l=&gt;l.status==="PENDING").length,fulfilled:_.value.filter(l=&gt;l.status==="FULFILLED").length},audits:{total:L.value.length,failed:L.value.filter(l=&gt;l.status==="FAILED").length,success:L.value.filter(l=&gt;l.status==="SUCCESS").length}})),V=D(()=&gt;w.value.reduce((l,a)=&gt;l+a.allocatedDrugs.length,0)),j=D(()=&gt;_.value.sort((l,a)=&gt;new Date(a.createdAt||"").getTime()-new Date(l.createdAt||"").getTime()).slice(0,5)),k=D(()=&gt;p.value.filter(l=&gt;l.stock&lt;20).sort((l,a)=&gt;l.stock-a.stock).slice(0,5)),q=D(()=&gt;{const l=_.value.length;if(l===0)return[];const a={PENDING:_.value.filter(n=&gt;n.status==="PENDING").length,FULFILLED:_.value.filter(n=&gt;n.status==="FULFILLED").length,FAILED:_.value.filter(n=&gt;n.status==="FAILED").length};return[{name:"待处理",value:a.PENDING,percentage:a.PENDING/l*100,color:"#e6a23c"},{name:"已处理",value:a.FULFILLED,percentage:a.FULFILLED/l*100,color:"#67c23a"},{name:"处理失败",value:a.FAILED,percentage:a.FAILED/l*100,color:"#f56c6c"}]}),H=D(()=&gt;{const l=p.value.length;if(l===0)return[];const a={normal:p.value.filter(n=&gt;n.stock&gt;=50).length,low:p.value.filter(n=&gt;n.stock&gt;=20&amp;&amp;n.stock&lt;50).length,critical:p.value.filter(n=&gt;n.stock&lt;20).length};return[{name:"库存充足",value:a.normal,percentage:a.normal/l*100,color:"#67c23a"},{name:"库存偏低",value:a.low,percentage:a.low/l*100,color:"#e6a23c"},{name:"库存不足",value:a.critical,percentage:a.critical/l*100,color:"#f56c6c"}]}),J=async()=&gt;{try{const[l,a,n,d]=await Promise.all([lt(),nt(),ot(),ut()]);p.value=l,w.value=a,_.value=n,L.value=d}catch(l){console.error("Failed to fetch dashboard data:",l)}},M=()=&gt;b.push("/drugs"),R=()=&gt;b.push("/pharmacies"),K=()=&gt;b.push("/prescriptions"),O=()=&gt;b.push("/audits"),Q=l=&gt;{switch(l){case"PENDING":return"warning";case"FULFILLED":return"success";case"FAILED":return"danger";default:return"info"}},W=l=&gt;{switch(l){case"PENDING":return"待处理";case"FULFILLED":return"已处理";case"FAILED":return"处理失败";default:return l}},X=l=&gt;l?new Date(l).toLocaleDateString("zh-CN"):"-";return Z(J),(l,a)=&gt;{const n=g("el-icon"),d=g("el-card"),r=g("el-col"),I=g("el-row"),y=g("el-button"),f=g("el-table-column"),A=g("el-tag"),C=g("el-table");return v(),h("div",it,[a[16]||(a[16]=s("div",{class:"dashboard-header"},[s("h1",null,"药品处方管理系统"),s("p",null,"欢迎使用药品处方履行管理系统，这里是您的数据概览")],-1)),t(I,{gutter:20,class:"mb-4"},{default:e(()=&gt;[t(r,{span:6},{default:e(()=&gt;[t(d,{class:"stat-card",shadow:"hover"},{default:e(()=&gt;[s("div",ct,[s("div",dt,[t(n,null,{default:e(()=&gt;[t(c($))]),_:1})]),s("div",rt,[s("h3",null,o(i.value.drugs.total),1),a[0]||(a[0]=s("p",null,"药品总数",-1)),s("div",_t,[s("span",pt,o(i.value.drugs.expired)+" 个已过期",1),s("span",ft,o(k.value.length)+" 个库存不足",1)])])])]),_:1})]),_:1}),t(r,{span:6},{default:e(()=&gt;[t(d,{class:"stat-card",shadow:"hover"},{default:e(()=&gt;[s("div",ht,[s("div",vt,[t(n,null,{default:e(()=&gt;[t(c(x))]),_:1})]),s("div",gt,[s("h3",null,o(i.value.pharmacies.total),1),a[1]||(a[1]=s("p",null,"药房总数",-1)),s("div",mt,[s("span",Dt,o(i.value.pharmacies.active)+" 个活跃",1),s("span",bt,o(V.value)+" 个分配药品",1)])])])]),_:1})]),_:1}),t(r,{span:6},{default:e(()=&gt;[t(d,{class:"stat-card",shadow:"hover"},{default:e(()=&gt;[s("div",wt,[s("div",Lt,[t(n,null,{default:e(()=&gt;[t(c(P))]),_:1})]),s("div",kt,[s("h3",null,o(i.value.prescriptions.total),1),a[2]||(a[2]=s("p",null,"处方总数",-1)),s("div",It,[s("span",yt,o(i.value.prescriptions.pending)+" 个待处理",1),s("span",Ft,o(i.value.prescriptions.fulfilled)+" 个已处理",1)])])])]),_:1})]),_:1}),t(r,{span:6},{default:e(()=&gt;[t(d,{class:"stat-card",shadow:"hover"},{default:e(()=&gt;[s("div",Et,[s("div",Nt,[t(n,null,{default:e(()=&gt;[t(c(S))]),_:1})]),s("div",At,[s("h3",null,o(i.value.audits.total),1),a[3]||(a[3]=s("p",null,"审计记录",-1)),s("div",Ct,[s("span",xt,o(i.value.audits.failed)+" 个失败",1),s("span",Pt,o(i.value.audits.success)+" 个成功",1)])])])]),_:1})]),_:1})]),_:1}),t(I,{gutter:20,class:"mb-4"},{default:e(()=&gt;[t(r,{span:12},{default:e(()=&gt;[t(d,null,{header:e(()=&gt;[...a[4]||(a[4]=[s("h3",null,"处方状态分布",-1)])]),default:e(()=&gt;[s("div",St,[s("div",Tt,[(v(!0),h(T,null,G(q.value,(u,E)=&gt;(v(),h("div",{class:"chart-bar",key:E},[s("div",Gt,o(u.name),1),s("div",Ut,[s("div",{class:"bar-fill",style:B({width:u.percentage+"%",backgroundColor:u.color})},null,4),s("span",zt,o(u.value),1)])]))),128))])])]),_:1})]),_:1}),t(r,{span:12},{default:e(()=&gt;[t(d,null,{header:e(()=&gt;[...a[5]||(a[5]=[s("h3",null,"药品库存状态",-1)])]),default:e(()=&gt;[s("div",Bt,[s("div",Vt,[(v(!0),h(T,null,G(H.value,(u,E)=&gt;(v(),h("div",{class:"chart-bar",key:E},[s("div",jt,o(u.name),1),s("div",qt,[s("div",{class:"bar-fill",style:B({width:u.percentage+"%",backgroundColor:u.color})},null,4),s("span",Ht,o(u.value),1)])]))),128))])])]),_:1})]),_:1})]),_:1}),t(I,{gutter:20,class:"mb-4"},{default:e(()=&gt;[t(r,{span:12},{default:e(()=&gt;[t(d,null,{header:e(()=&gt;[...a[6]||(a[6]=[s("h3",null,"快速操作",-1)])]),default:e(()=&gt;[s("div",Jt,[t(y,{type:"primary",onClick:M,class:"action-btn"},{default:e(()=&gt;[t(n,null,{default:e(()=&gt;[t(c(st))]),_:1}),a[7]||(a[7]=m(" 新增药品 ",-1))]),_:1}),t(y,{type:"success",onClick:K,class:"action-btn"},{default:e(()=&gt;[t(n,null,{default:e(()=&gt;[t(c(P))]),_:1}),a[8]||(a[8]=m(" 处理处方 ",-1))]),_:1}),t(y,{type:"info",onClick:R,class:"action-btn"},{default:e(()=&gt;[t(n,null,{default:e(()=&gt;[t(c(x))]),_:1}),a[9]||(a[9]=m(" 查看药房 ",-1))]),_:1}),t(y,{type:"warning",onClick:O,class:"action-btn"},{default:e(()=&gt;[t(n,null,{default:e(()=&gt;[t(c(S))]),_:1}),a[10]||(a[10]=m(" 审计日志 ",-1))]),_:1})])]),_:1})]),_:1}),t(r,{span:12},{default:e(()=&gt;[t(d,null,{header:e(()=&gt;[...a[11]||(a[11]=[s("h3",null,"系统状态",-1)])]),default:e(()=&gt;[s("div",Mt,[s("div",Rt,[t(n,{class:"status-icon success"},{default:e(()=&gt;[t(c(U))]),_:1}),a[12]||(a[12]=s("span",null,"API 服务正常",-1))]),s("div",Kt,[t(n,{class:"status-icon success"},{default:e(()=&gt;[t(c(U))]),_:1}),a[13]||(a[13]=s("span",null,"数据库连接正常",-1))]),i.value.drugs.expired&gt;0?(v(),h("div",Ot,[t(n,{class:"status-icon warning"},{default:e(()=&gt;[t(c(z))]),_:1}),s("span",null,o(i.value.drugs.expired)+" 个药品已过期",1)])):N("",!0),i.value.prescriptions.pending&gt;0?(v(),h("div",Qt,[t(n,{class:"status-icon info"},{default:e(()=&gt;[t(c(at))]),_:1}),s("span",null,o(i.value.prescriptions.pending)+" 个处方待处理",1)])):N("",!0),k.value.length&gt;0?(v(),h("div",Wt,[t(n,{class:"status-icon danger"},{default:e(()=&gt;[t(c(z))]),_:1}),s("span",null,o(k.value.length)+" 个药品库存不足",1)])):N("",!0)])]),_:1})]),_:1})]),_:1}),t(I,{gutter:20},{default:e(()=&gt;[t(r,{span:12},{default:e(()=&gt;[t(d,null,{header:e(()=&gt;[...a[14]||(a[14]=[s("h3",null,"最近处方",-1)])]),default:e(()=&gt;[t(C,{data:j.value,size:"small","max-height":"300"},{default:e(()=&gt;[t(f,{prop:"id",label:"处方ID",width:"100"}),t(f,{prop:"patientName",label:"患者",width:"100"}),t(f,{prop:"status",label:"状态",width:"80"},{default:e(({row:u})=&gt;[t(A,{type:Q(u.status),size:"small"},{default:e(()=&gt;[m(o(W(u.status)),1)]),_:2},1032,["type"])]),_:1}),t(f,{prop:"createdAt",label:"时间",width:"120"},{default:e(({row:u})=&gt;[m(o(X(u.createdAt)),1)]),_:1})]),_:1},8,["data"])]),_:1})]),_:1}),t(r,{span:12},{default:e(()=&gt;[t(d,null,{header:e(()=&gt;[...a[15]||(a[15]=[s("h3",null,"药品库存预警",-1)])]),default:e(()=&gt;[t(C,{data:k.value,size:"small","max-height":"300"},{default:e(()=&gt;[t(f,{prop:"name",label:"药品名称"}),t(f,{prop:"stock",label:"库存",width:"80"}),t(f,{prop:"limit",label:"限额",width:"80"}),t(f,{label:"状态",width:"100"},{default:e(({row:u})=&gt;[t(A,{type:u.stock&lt;10?"danger":"warning",size:"small"},{default:e(()=&gt;[m(o(u.stock&lt;10?"库存不足":"库存偏低"),1)]),_:2},1032,["type"])]),_:1})]),_:1},8,["data"])]),_:1})]),_:1})]),_:1})])}}}),ls=et(Xt,[["__scopeId","data-v-877660d2"]]);export{ls as default};<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-09-19T08:56:50.992Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    

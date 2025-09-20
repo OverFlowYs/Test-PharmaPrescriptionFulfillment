@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for dist/assets/DrugsList-CHRO-eIV.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">dist/assets</a> DrugsList-CHRO-eIV.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import{a as q,g as B}from"./drugs-D42j0t9d.js";import{d as D,r as _,K as y,o as g,w as t,g as r,e as l,h as f,E as k,n as E,c as w,b as M,L as N,M as Y,D as L,t as S}from"./index-HvR_NwB1.js";import"./client-CvWrZdCA.js";const A=D({__name:"AddDrugDialog",props:{modelValue:{type:Boolean}},emits:["update:modelValue","success"],setup(C,{emit:c}){const v=c,a=_({name:"",manufacturer:"",batch:"",expiry:"",stock:0,limit:0}),m=_(!1),b={name:[{required:!0,message:"必填",trigger:"blur"}],batch:[{required:!0,message:"必填",trigger:"blur"}],expiry:[{required:!0,message:"必填",trigger:"change"}],stock:[{type:"number",required:!0,message:"必填",trigger:"change"}],limit:[{type:"number",required:!0,message:"必填",trigger:"change"}]},i=_(),o=async()=&gt;{await i.value?.validate(),m.value=!0;try{await q({...a.value}),k.success("新增成功"),v("success"),v("update:modelValue",!1)}catch(s){k.error(s?.message||"提交失败")}finally{m.value=!1}};return(s,e)=&gt;{const p=r("el-input"),d=r("el-form-item"),V=r("el-date-picker"),n=r("el-input-number"),U=r("el-form"),x=r("el-button"),$=r("el-dialog");return g(),y($,{title:"新增药品","model-value":s.modelValue,onClose:e[7]||(e[7]=u=&gt;s.$emit("update:modelValue",!1)),width:"520px"},{footer:t(()=&gt;[l(x,{onClick:e[6]||(e[6]=u=&gt;s.$emit("update:modelValue",!1))},{default:t(()=&gt;[...e[8]||(e[8]=[f("取消",-1)])]),_:1}),l(x,{type:"primary",loading:m.value,onClick:o},{default:t(()=&gt;[...e[9]||(e[9]=[f("提交",-1)])]),_:1},8,["loading"])]),default:t(()=&gt;[l(U,{model:a.value,rules:b,ref_key:"formRef",ref:i,"label-width":"96px"},{default:t(()=&gt;[l(d,{label:"名称",prop:"name"},{default:t(()=&gt;[l(p,{modelValue:a.value.name,"onUpdate:modelValue":e[0]||(e[0]=u=&gt;a.value.name=u)},null,8,["modelValue"])]),_:1}),l(d,{label:"生产商",prop:"manufacturer"},{default:t(()=&gt;[l(p,{modelValue:a.value.manufacturer,"onUpdate:modelValue":e[1]||(e[1]=u=&gt;a.value.manufacturer=u)},null,8,["modelValue"])]),_:1}),l(d,{label:"批次",prop:"batch"},{default:t(()=&gt;[l(p,{modelValue:a.value.batch,"onUpdate:modelValue":e[2]||(e[2]=u=&gt;a.value.batch=u)},null,8,["modelValue"])]),_:1}),l(d,{label:"有效期",prop:"expiry"},{default:t(()=&gt;[l(V,{modelValue:a.value.expiry,"onUpdate:modelValue":e[3]||(e[3]=u=&gt;a.value.expiry=u),type:"date","value-format":"YYYY-MM-DD"},null,8,["modelValue"])]),_:1}),l(d,{label:"库存",prop:"stock"},{default:t(()=&gt;[l(n,{modelValue:a.value.stock,"onUpdate:modelValue":e[4]||(e[4]=u=&gt;a.value.stock=u),min:0},null,8,["modelValue"])]),_:1}),l(d,{label:"药房限额",prop:"limit"},{default:t(()=&gt;[l(n,{modelValue:a.value.limit,"onUpdate:modelValue":e[5]||(e[5]=u=&gt;a.value.limit=u),min:0},null,8,["modelValue"])]),_:1})]),_:1},8,["model"])]),_:1},8,["model-value"])}}}),K={class:"mb-3",style:{display:"flex",gap:"8px","justify-content":"flex-end"}},R={key:0},T=D({__name:"DrugsList",setup(C){const c=_(!1),v=_([]),a=_(!1),m=i=&gt;new Date(i.expiry)&lt;new Date,b=async()=&gt;{c.value=!0;try{v.value=await B()}catch(i){k.error(i?.message||"加载失败")}finally{c.value=!1}};return E(b),(i,o)=&gt;{const s=r("el-button"),e=r("el-table-column"),p=r("el-tag"),d=r("el-table"),V=Y("loading");return g(),w("div",null,[M("div",K,[l(s,{type:"primary",onClick:o[0]||(o[0]=n=&gt;a.value=!0)},{default:t(()=&gt;[...o[2]||(o[2]=[f("新增药品",-1)])]),_:1}),l(s,{onClick:b},{default:t(()=&gt;[...o[3]||(o[3]=[f("刷新",-1)])]),_:1})]),N((g(),y(d,{data:v.value,style:{width:"100%"}},{default:t(()=&gt;[l(e,{prop:"id",label:"ID",width:"100"}),l(e,{prop:"name",label:"名称"}),l(e,{prop:"manufacturer",label:"生产商"}),l(e,{prop:"batch",label:"批次",width:"120"}),l(e,{prop:"expiry",label:"有效期",width:"140"},{default:t(({row:n})=&gt;[l(p,{type:m(n)?"danger":"success"},{default:t(()=&gt;[f(S(n.expiry)+" ",1),m(n)?(g(),w("span",R,"（过期）")):L("",!0)]),_:2},1032,["type"])]),_:1}),l(e,{prop:"stock",label:"库存",width:"100"}),l(e,{prop:"limit",label:"药房限额",width:"120"}),l(e,{label:"状态",width:"100"},{default:t(({row:n})=&gt;[m(n)?(g(),y(p,{key:0,type:"danger"},{default:t(()=&gt;[...o[4]||(o[4]=[f("Expired",-1)])]),_:1})):(g(),y(p,{key:1,type:"success"},{default:t(()=&gt;[...o[5]||(o[5]=[f("OK",-1)])]),_:1}))]),_:1})]),_:1},8,["data"])),[[V,c.value]]),l(A,{modelValue:a.value,"onUpdate:modelValue":o[1]||(o[1]=n=&gt;a.value=n),onSuccess:b},null,8,["modelValue"])])}}});export{T as default};<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-09-19T08:56:50.992Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    

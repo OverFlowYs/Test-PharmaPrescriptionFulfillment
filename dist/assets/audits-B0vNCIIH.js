@@ -1,0 +1,1 @@
+import{a as d}from"./client-2qhNOC3Y.js";const o=a=>{const t=new URLSearchParams;a?.patientId&&t.append("patientId",a.patientId),a?.pharmacyId&&t.append("pharmacyId",a.pharmacyId),a?.status&&t.append("status",a.status);const p=t.toString(),n=p?`/audit-logs?${p}`:"/audit-logs";return d(n)};export{o as g};
