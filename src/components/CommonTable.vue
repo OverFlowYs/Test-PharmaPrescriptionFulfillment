@@ -1,17 +1,24 @@
 <template>
   <div>
     <!-- 工具栏 -->
-    <div class="mb-3 flex gap-2 justify-end" v-if="showAddButton || showRefreshButton">
+    <div
+      class="mb-3 flex gap-2 justify-end"
+      v-if="showAddButton || showRefreshButton"
+    >
       <slot name="toolbar">
-        <el-button v-if="showAddButton" type="primary" @click="$emit('add')">新增</el-button>
-        <el-button v-if="showRefreshButton" @click="$emit('refresh')">刷新</el-button>
+        <el-button v-if="showAddButton" type="primary" @click="$emit('add')"
+          >新增</el-button
+        >
+        <el-button v-if="showRefreshButton" @click="$emit('refresh')"
+          >刷新</el-button
+        >
       </slot>
     </div>
 
     <!-- 表格 -->
     <el-table :data="data" v-loading="loading" style="width: 100%">
-      <el-table-column 
-        v-for="column in columns" 
+      <el-table-column
+        v-for="column in columns"
         :key="column.prop"
         :prop="column.prop"
         :label="column.label"
@@ -24,7 +31,7 @@
           </slot>
         </template>
       </el-table-column>
-      
+
       <!-- 操作列 -->
       <el-table-column label="操作" :width="actionWidth" v-if="showActions">
         <template #default="{ row }">
@@ -53,58 +60,58 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 
 export interface TableColumn {
-  prop: string
-  label: string
-  width?: number | string
-  minWidth?: number | string
-  slot?: string
+  prop: string;
+  label: string;
+  width?: number | string;
+  minWidth?: number | string;
+  slot?: string;
 }
 
 export interface PaginationConfig {
-  currentPage: number
-  pageSize: number
-  total: number
+  currentPage: number;
+  pageSize: number;
+  total: number;
 }
 
 const props = defineProps<{
-  data: any[]
-  columns: TableColumn[]
-  loading?: boolean
-  showActions?: boolean
-  actionWidth?: number | string
-  pagination?: PaginationConfig
-  showAddButton?: boolean
-  showRefreshButton?: boolean
-}>()
+  data: any[];
+  columns: TableColumn[];
+  loading?: boolean;
+  showActions?: boolean;
+  actionWidth?: number | string;
+  pagination?: PaginationConfig;
+  showAddButton?: boolean;
+  showRefreshButton?: boolean;
+}>();
 
 const emit = defineEmits<{
-  add: []
-  refresh: []
-  view: [row: any]
-  pageChange: [page: number, size: number]
-}>()
+  add: [];
+  refresh: [];
+  view: [row: any];
+  pageChange: [page: number, size: number];
+}>();
 
-const currentPage = ref(props.pagination?.currentPage || 1)
-const pageSize = ref(props.pagination?.pageSize || 10)
+const currentPage = ref(props.pagination?.currentPage || 1);
+const pageSize = ref(props.pagination?.pageSize || 10);
 
-const total = computed(() => props.pagination?.total || 0)
+const total = computed(() => props.pagination?.total || 0);
 
 const getValue = (row: any, prop: string) => {
-  return prop.split('.').reduce((obj, key) => obj?.[key], row)
-}
+  return prop.split('.').reduce((obj, key) => obj?.[key], row);
+};
 
 const handleSizeChange = (size: number) => {
-  pageSize.value = size
-  emit('pageChange', currentPage.value, size)
-}
+  pageSize.value = size;
+  emit('pageChange', currentPage.value, size);
+};
 
 const handleCurrentChange = (page: number) => {
-  currentPage.value = page
-  emit('pageChange', page, pageSize.value)
-}
+  currentPage.value = page;
+  emit('pageChange', page, pageSize.value);
+};
 </script>
 
 <style scoped>

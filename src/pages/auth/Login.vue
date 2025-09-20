@@ -5,7 +5,7 @@
         <h1>药品处方管理系统</h1>
         <p>请登录您的账户</p>
       </div>
-      
+
       <el-form
         ref="formRef"
         :model="form"
@@ -21,7 +21,7 @@
             :prefix-icon="User"
           />
         </el-form-item>
-        
+
         <el-form-item prop="password">
           <el-input
             v-model="form.password"
@@ -32,11 +32,11 @@
             show-password
           />
         </el-form-item>
-        
+
         <el-form-item prop="captcha">
           <Captcha v-model="form.captcha" @change="onCaptchaChange" />
         </el-form-item>
-        
+
         <el-form-item>
           <el-button
             type="primary"
@@ -49,7 +49,7 @@
           </el-button>
         </el-form-item>
       </el-form>
-      
+
       <div class="login-footer">
         <p>
           还没有账户？
@@ -64,79 +64,88 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
-import { User, Lock } from '@element-plus/icons-vue'
-import type { LoginForm } from '../../types/auth'
-import Captcha from '../../components/Captcha.vue'
-import { useAuthStore } from '../../stores/auth'
+import { ref, reactive } from 'vue';
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
+import { User, Lock } from '@element-plus/icons-vue';
+import type { LoginForm } from '../../types/auth';
+import Captcha from '../../components/Captcha.vue';
+import { useAuthStore } from '../../stores/auth';
 
-const router = useRouter()
-const authStore = useAuthStore()
-const formRef = ref()
-const loading = ref(false)
-const captchaRef = ref()
+const router = useRouter();
+const authStore = useAuthStore();
+const formRef = ref();
+const loading = ref(false);
+const captchaRef = ref();
 
 const form = reactive<LoginForm>({
   username: '',
   password: '',
-  captcha: ''
-})
+  captcha: '',
+});
 
 const rules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 20, message: '用户名长度在 3 到 20 个字符', trigger: 'blur' }
+    {
+      min: 3,
+      max: 20,
+      message: '用户名长度在 3 到 20 个字符',
+      trigger: 'blur',
+    },
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 20, message: '密码长度在 6 到 20 个字符', trigger: 'blur' }
+    { min: 6, max: 20, message: '密码长度在 6 到 20 个字符', trigger: 'blur' },
   ],
   captcha: [
     { required: true, message: '请输入验证码', trigger: 'blur' },
-    { len: 4, message: '验证码长度为 4 位', trigger: 'blur' }
-  ]
-}
+    { len: 4, message: '验证码长度为 4 位', trigger: 'blur' },
+  ],
+};
 
 const onCaptchaChange = (value: string) => {
-  form.captcha = value
-}
+  form.captcha = value;
+};
 
 const handleLogin = async () => {
-  if (!formRef.value) return
-  
+  if (!formRef.value) return;
+
   try {
-    await formRef.value.validate()
-    
+    await formRef.value.validate();
+
     // 验证验证码
     if (captchaRef.value && !captchaRef.value.verifyCaptcha(form.captcha)) {
-      ElMessage.error('验证码错误')
-      captchaRef.value.refreshCaptcha()
-      return
+      ElMessage.error('验证码错误');
+      captchaRef.value.refreshCaptcha();
+      return;
     }
-    
-    loading.value = true
-    
-    const result = await authStore.loginUser(form.username, form.password, form.captcha)
-    
+
+    loading.value = true;
+
+    const result = await authStore.loginUser(
+      form.username,
+      form.password,
+      form.captcha
+    );
+
     if (result.success) {
-      ElMessage.success('登录成功')
-      router.push('/')
+      ElMessage.success('登录成功');
+      router.push('/');
     } else {
-      ElMessage.error(result.message || '登录失败')
-      captchaRef.value?.refreshCaptcha()
+      ElMessage.error(result.message || '登录失败');
+      captchaRef.value?.refreshCaptcha();
     }
   } catch (error) {
-    console.error('Login error:', error)
+    console.error('Login error:', error);
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 
 const goToRegister = () => {
-  router.push('/register')
-}
+  router.push('/register');
+};
 </script>
 
 <style scoped>
@@ -207,7 +216,7 @@ const goToRegister = () => {
     padding: 30px 20px;
     margin: 10px;
   }
-  
+
   .login-header h1 {
     font-size: 24px;
   }

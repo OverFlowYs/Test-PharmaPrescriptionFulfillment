@@ -5,14 +5,16 @@
       <div class="banner-content">
         <div class="banner-text">
           <h1 class="banner-title">药品处方管理系统</h1>
-          <p class="banner-subtitle">欢迎使用药品处方履行管理系统，这里是您的数据概览</p>
+          <p class="banner-subtitle">
+            欢迎使用药品处方履行管理系统，这里是您的数据概览
+          </p>
         </div>
         <div class="banner-icon">
           <el-icon><ShoppingBag /></el-icon>
         </div>
       </div>
     </div>
-    
+
     <!-- 统计卡片 -->
     <div class="stats-grid">
       <div class="stat-card drugs">
@@ -32,11 +34,13 @@
           </div>
           <div class="stat-detail-item">
             <span class="detail-label">库存不足</span>
-            <span class="detail-value low-stock">{{ lowStockDrugs.length }}</span>
+            <span class="detail-value low-stock">{{
+              lowStockDrugs.length
+            }}</span>
           </div>
         </div>
       </div>
-      
+
       <div class="stat-card pharmacies">
         <div class="stat-header">
           <div class="stat-icon">
@@ -50,15 +54,19 @@
         <div class="stat-details">
           <div class="stat-detail-item">
             <span class="detail-label">活跃药房</span>
-            <span class="detail-value active">{{ stats.pharmacies.active }}</span>
+            <span class="detail-value active">{{
+              stats.pharmacies.active
+            }}</span>
           </div>
           <div class="stat-detail-item">
             <span class="detail-label">分配药品</span>
-            <span class="detail-value total-drugs">{{ totalAllocatedDrugs }}</span>
+            <span class="detail-value total-drugs">{{
+              totalAllocatedDrugs
+            }}</span>
           </div>
         </div>
       </div>
-      
+
       <div class="stat-card prescriptions">
         <div class="stat-header">
           <div class="stat-icon">
@@ -72,15 +80,19 @@
         <div class="stat-details">
           <div class="stat-detail-item">
             <span class="detail-label">待处理</span>
-            <span class="detail-value pending">{{ stats.prescriptions.pending }}</span>
+            <span class="detail-value pending">{{
+              stats.prescriptions.pending
+            }}</span>
           </div>
           <div class="stat-detail-item">
             <span class="detail-label">已处理</span>
-            <span class="detail-value success">{{ stats.prescriptions.fulfilled }}</span>
+            <span class="detail-value success">{{
+              stats.prescriptions.fulfilled
+            }}</span>
           </div>
         </div>
       </div>
-      
+
       <div class="stat-card audits">
         <div class="stat-header">
           <div class="stat-icon">
@@ -103,7 +115,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- 图表区域 -->
     <div class="charts-section">
       <div class="chart-card">
@@ -113,23 +125,32 @@
         </div>
         <div class="chart-container">
           <div class="chart-bars">
-            <div class="chart-bar" v-for="(item, index) in prescriptionStatusData" :key="index">
+            <div
+              class="chart-bar"
+              v-for="(item, index) in prescriptionStatusData"
+              :key="index"
+            >
               <div class="bar-info">
                 <span class="bar-label">{{ item.name }}</span>
                 <span class="bar-count">{{ item.value }}</span>
               </div>
               <div class="bar-track">
-                <div 
-                  class="bar-fill" 
-                  :style="{ width: item.percentage + '%', backgroundColor: item.color }"
+                <div
+                  class="bar-fill"
+                  :style="{
+                    width: item.percentage + '%',
+                    backgroundColor: item.color,
+                  }"
                 ></div>
               </div>
-              <div class="bar-percentage">{{ Math.round(item.percentage) }}%</div>
+              <div class="bar-percentage">
+                {{ Math.round(item.percentage) }}%
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div class="chart-card">
         <div class="chart-header">
           <h3 class="chart-title">药品库存状态</h3>
@@ -137,24 +158,33 @@
         </div>
         <div class="chart-container">
           <div class="chart-bars">
-            <div class="chart-bar" v-for="(item, index) in drugStockData" :key="index">
+            <div
+              class="chart-bar"
+              v-for="(item, index) in drugStockData"
+              :key="index"
+            >
               <div class="bar-info">
                 <span class="bar-label">{{ item.name }}</span>
                 <span class="bar-count">{{ item.value }}</span>
               </div>
               <div class="bar-track">
-                <div 
-                  class="bar-fill" 
-                  :style="{ width: item.percentage + '%', backgroundColor: item.color }"
+                <div
+                  class="bar-fill"
+                  :style="{
+                    width: item.percentage + '%',
+                    backgroundColor: item.color,
+                  }"
                 ></div>
               </div>
-              <div class="bar-percentage">{{ Math.round(item.percentage) }}%</div>
+              <div class="bar-percentage">
+                {{ Math.round(item.percentage) }}%
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- 快速操作和系统状态 -->
     <div class="actions-status-section">
       <div class="quick-actions-card">
@@ -175,7 +205,7 @@
               <el-icon><ArrowRight /></el-icon>
             </div>
           </div>
-          
+
           <div class="action-item" @click="goToPrescriptions">
             <div class="action-icon success">
               <el-icon><Document /></el-icon>
@@ -188,7 +218,7 @@
               <el-icon><ArrowRight /></el-icon>
             </div>
           </div>
-          
+
           <div class="action-item" @click="goToPharmacies">
             <div class="action-icon info">
               <el-icon><Shop /></el-icon>
@@ -201,7 +231,7 @@
               <el-icon><ArrowRight /></el-icon>
             </div>
           </div>
-          
+
           <div class="action-item" @click="goToAudits">
             <div class="action-icon warning">
               <el-icon><List /></el-icon>
@@ -216,7 +246,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="system-status-card">
         <div class="card-header">
           <h3 class="card-title">系统状态</h3>
@@ -232,7 +262,7 @@
               <div class="status-desc">所有接口响应正常</div>
             </div>
           </div>
-          
+
           <div class="status-item success">
             <div class="status-indicator">
               <el-icon><Check /></el-icon>
@@ -242,40 +272,46 @@
               <div class="status-desc">数据同步正常</div>
             </div>
           </div>
-          
+
           <div class="status-item warning" v-if="stats.drugs.expired > 0">
             <div class="status-indicator">
               <el-icon><Warning /></el-icon>
             </div>
             <div class="status-content">
-              <div class="status-title">{{ stats.drugs.expired }} 个药品已过期</div>
+              <div class="status-title">
+                {{ stats.drugs.expired }} 个药品已过期
+              </div>
               <div class="status-desc">需要及时处理</div>
             </div>
           </div>
-          
+
           <div class="status-item info" v-if="stats.prescriptions.pending > 0">
             <div class="status-indicator">
               <el-icon><InfoFilled /></el-icon>
             </div>
             <div class="status-content">
-              <div class="status-title">{{ stats.prescriptions.pending }} 个处方待处理</div>
+              <div class="status-title">
+                {{ stats.prescriptions.pending }} 个处方待处理
+              </div>
               <div class="status-desc">等待处理中</div>
             </div>
           </div>
-          
+
           <div class="status-item danger" v-if="lowStockDrugs.length > 0">
             <div class="status-indicator">
               <el-icon><Warning /></el-icon>
             </div>
             <div class="status-content">
-              <div class="status-title">{{ lowStockDrugs.length }} 个药品库存不足</div>
+              <div class="status-title">
+                {{ lowStockDrugs.length }} 个药品库存不足
+              </div>
               <div class="status-desc">需要及时补货</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- 数据表格 -->
     <div class="tables-section">
       <div class="table-card">
@@ -284,7 +320,12 @@
           <div class="card-subtitle">最新处理的处方记录</div>
         </div>
         <div class="table-container">
-          <el-table :data="recentPrescriptions" size="small" max-height="300" class="modern-table">
+          <el-table
+            :data="recentPrescriptions"
+            size="small"
+            max-height="300"
+            class="modern-table"
+          >
             <el-table-column prop="id" label="处方ID" width="100">
               <template #default="{ row }">
                 <span class="table-id">{{ row.id }}</span>
@@ -293,14 +334,22 @@
             <el-table-column prop="patientName" label="患者" width="100">
               <template #default="{ row }">
                 <div class="patient-info">
-                  <div class="patient-avatar">{{ row.patientName?.charAt(0) || '?' }}</div>
-                  <span class="patient-name">{{ row.patientName || '未知' }}</span>
+                  <div class="patient-avatar">
+                    {{ row.patientName?.charAt(0) || '?' }}
+                  </div>
+                  <span class="patient-name">{{
+                    row.patientName || '未知'
+                  }}</span>
                 </div>
               </template>
             </el-table-column>
             <el-table-column prop="status" label="状态" width="100">
               <template #default="{ row }">
-                <el-tag :type="getStatusType(row.status)" size="small" class="status-tag">
+                <el-tag
+                  :type="getStatusType(row.status)"
+                  size="small"
+                  class="status-tag"
+                >
                   {{ getStatusText(row.status) }}
                 </el-tag>
               </template>
@@ -313,14 +362,19 @@
           </el-table>
         </div>
       </div>
-      
+
       <div class="table-card">
         <div class="card-header">
           <h3 class="card-title">药品库存预警</h3>
           <div class="card-subtitle">需要关注的库存情况</div>
         </div>
         <div class="table-container">
-          <el-table :data="lowStockDrugs" size="small" max-height="300" class="modern-table">
+          <el-table
+            :data="lowStockDrugs"
+            size="small"
+            max-height="300"
+            class="modern-table"
+          >
             <el-table-column prop="name" label="药品名称">
               <template #default="{ row }">
                 <div class="drug-info">
@@ -341,7 +395,11 @@
             </el-table-column>
             <el-table-column label="状态" width="100">
               <template #default="{ row }">
-                <el-tag :type="row.stock < 10 ? 'danger' : 'warning'" size="small" class="status-tag">
+                <el-tag
+                  :type="row.stock < 10 ? 'danger' : 'warning'"
+                  size="small"
+                  class="status-tag"
+                >
                   {{ row.stock < 10 ? '库存不足' : '库存偏低' }}
                 </el-tag>
               </template>
@@ -354,160 +412,206 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { getDrugs } from '../api/drugs'
-import { getPharmacies } from '../api/pharmacies'
-import { getPrescriptions } from '../api/prescriptions'
-import { getAuditLogs } from '../api/audits'
-import type { Drug } from '../types/drug'
-import type { Pharmacy } from '../types/pharmacy'
-import type { Prescription } from '../types/prescription'
-import type { AuditLog } from '../types/audit'
-import { 
-  ShoppingBag, 
-  Shop, 
-  Document, 
-  List, 
-  Plus, 
-  Check, 
-  Warning, 
+import { onMounted, ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { getDrugs } from '../api/drugs';
+import { getPharmacies } from '../api/pharmacies';
+import { getPrescriptions } from '../api/prescriptions';
+import { getAuditLogs } from '../api/audits';
+import type { Drug } from '../types/drug';
+import type { Pharmacy } from '../types/pharmacy';
+import type { Prescription } from '../types/prescription';
+import type { AuditLog } from '../types/audit';
+import {
+  ShoppingBag,
+  Shop,
+  Document,
+  List,
+  Plus,
+  Check,
+  Warning,
   InfoFilled,
-  ArrowRight
-} from '@element-plus/icons-vue'
+  ArrowRight,
+} from '@element-plus/icons-vue';
 
-const router = useRouter()
+const router = useRouter();
 
-const drugs = ref<Drug[]>([])
-const pharmacies = ref<Pharmacy[]>([])
-const prescriptions = ref<Prescription[]>([])
-const auditLogs = ref<AuditLog[]>([])
+const drugs = ref<Drug[]>([]);
+const pharmacies = ref<Pharmacy[]>([]);
+const prescriptions = ref<Prescription[]>([]);
+const auditLogs = ref<AuditLog[]>([]);
 
 // 统计数据
 const stats = computed(() => ({
   drugs: {
     total: drugs.value.length,
-    expired: drugs.value.filter(d => new Date(d.expiry) <= new Date()).length
+    expired: drugs.value.filter(d => new Date(d.expiry) <= new Date()).length,
   },
   pharmacies: {
     total: pharmacies.value.length,
-    active: pharmacies.value.length // 假设所有药房都活跃
+    active: pharmacies.value.length, // 假设所有药房都活跃
   },
   prescriptions: {
     total: prescriptions.value.length,
     pending: prescriptions.value.filter(p => p.status === 'PENDING').length,
-    fulfilled: prescriptions.value.filter(p => p.status === 'FULFILLED').length
+    fulfilled: prescriptions.value.filter(p => p.status === 'FULFILLED').length,
   },
   audits: {
     total: auditLogs.value.length,
     failed: auditLogs.value.filter(a => a.status === 'FAILED').length,
-    success: auditLogs.value.filter(a => a.status === 'SUCCESS').length
-  }
-}))
+    success: auditLogs.value.filter(a => a.status === 'SUCCESS').length,
+  },
+}));
 
 // 总分配药品数量
-const totalAllocatedDrugs = computed(() => 
-  pharmacies.value.reduce((total, pharmacy) => total + pharmacy.allocatedDrugs.length, 0)
-)
+const totalAllocatedDrugs = computed(() =>
+  pharmacies.value.reduce(
+    (total, pharmacy) => total + pharmacy.allocatedDrugs.length,
+    0
+  )
+);
 
 // 最近处方（取前5个）
-const recentPrescriptions = computed(() => 
+const recentPrescriptions = computed(() =>
   prescriptions.value
-    .sort((a, b) => new Date(b.createdAt || '').getTime() - new Date(a.createdAt || '').getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt || '').getTime() -
+        new Date(a.createdAt || '').getTime()
+    )
     .slice(0, 5)
-)
+);
 
 // 库存预警药品
-const lowStockDrugs = computed(() => 
+const lowStockDrugs = computed(() =>
   drugs.value
     .filter(d => d.stock < 20) // 库存低于20的药品
     .sort((a, b) => a.stock - b.stock)
     .slice(0, 5)
-)
+);
 
 // 处方状态分布数据
 const prescriptionStatusData = computed(() => {
-  const total = prescriptions.value.length
-  if (total === 0) return []
-  
+  const total = prescriptions.value.length;
+  if (total === 0) return [];
+
   const statusCounts = {
     PENDING: prescriptions.value.filter(p => p.status === 'PENDING').length,
     FULFILLED: prescriptions.value.filter(p => p.status === 'FULFILLED').length,
-    FAILED: prescriptions.value.filter(p => p.status === 'FAILED').length
-  }
-  
+    FAILED: prescriptions.value.filter(p => p.status === 'FAILED').length,
+  };
+
   return [
-    { name: '待处理', value: statusCounts.PENDING, percentage: (statusCounts.PENDING / total) * 100, color: '#e6a23c' },
-    { name: '已处理', value: statusCounts.FULFILLED, percentage: (statusCounts.FULFILLED / total) * 100, color: '#67c23a' },
-    { name: '处理失败', value: statusCounts.FAILED, percentage: (statusCounts.FAILED / total) * 100, color: '#f56c6c' }
-  ]
-})
+    {
+      name: '待处理',
+      value: statusCounts.PENDING,
+      percentage: (statusCounts.PENDING / total) * 100,
+      color: '#e6a23c',
+    },
+    {
+      name: '已处理',
+      value: statusCounts.FULFILLED,
+      percentage: (statusCounts.FULFILLED / total) * 100,
+      color: '#67c23a',
+    },
+    {
+      name: '处理失败',
+      value: statusCounts.FAILED,
+      percentage: (statusCounts.FAILED / total) * 100,
+      color: '#f56c6c',
+    },
+  ];
+});
 
 // 药品库存状态数据
 const drugStockData = computed(() => {
-  const total = drugs.value.length
-  if (total === 0) return []
-  
+  const total = drugs.value.length;
+  if (total === 0) return [];
+
   const stockCounts = {
     normal: drugs.value.filter(d => d.stock >= 50).length,
     low: drugs.value.filter(d => d.stock >= 20 && d.stock < 50).length,
-    critical: drugs.value.filter(d => d.stock < 20).length
-  }
-  
+    critical: drugs.value.filter(d => d.stock < 20).length,
+  };
+
   return [
-    { name: '库存充足', value: stockCounts.normal, percentage: (stockCounts.normal / total) * 100, color: '#67c23a' },
-    { name: '库存偏低', value: stockCounts.low, percentage: (stockCounts.low / total) * 100, color: '#e6a23c' },
-    { name: '库存不足', value: stockCounts.critical, percentage: (stockCounts.critical / total) * 100, color: '#f56c6c' }
-  ]
-})
+    {
+      name: '库存充足',
+      value: stockCounts.normal,
+      percentage: (stockCounts.normal / total) * 100,
+      color: '#67c23a',
+    },
+    {
+      name: '库存偏低',
+      value: stockCounts.low,
+      percentage: (stockCounts.low / total) * 100,
+      color: '#e6a23c',
+    },
+    {
+      name: '库存不足',
+      value: stockCounts.critical,
+      percentage: (stockCounts.critical / total) * 100,
+      color: '#f56c6c',
+    },
+  ];
+});
 
 const fetchData = async () => {
   try {
-    const [drugsData, pharmaciesData, prescriptionsData, auditsData] = await Promise.all([
-      getDrugs(),
-      getPharmacies(),
-      getPrescriptions(),
-      getAuditLogs()
-    ])
-    
-    drugs.value = drugsData
-    pharmacies.value = pharmaciesData
-    prescriptions.value = prescriptionsData
-    auditLogs.value = auditsData
-  } catch (error) {
-    console.error('Failed to fetch dashboard data:', error)
-  }
-}
+    const [drugsData, pharmaciesData, prescriptionsData, auditsData] =
+      await Promise.all([
+        getDrugs(),
+        getPharmacies(),
+        getPrescriptions(),
+        getAuditLogs(),
+      ]);
 
-const goToDrugs = () => router.push('/drugs')
-const goToPharmacies = () => router.push('/pharmacies')
-const goToPrescriptions = () => router.push('/prescriptions')
-const goToAudits = () => router.push('/audits')
+    drugs.value = drugsData;
+    pharmacies.value = pharmaciesData;
+    prescriptions.value = prescriptionsData;
+    auditLogs.value = auditsData;
+  } catch (error) {
+    console.error('Failed to fetch dashboard data:', error);
+  }
+};
+
+const goToDrugs = () => router.push('/drugs');
+const goToPharmacies = () => router.push('/pharmacies');
+const goToPrescriptions = () => router.push('/prescriptions');
+const goToAudits = () => router.push('/audits');
 
 const getStatusType = (status: string) => {
   switch (status) {
-    case 'PENDING': return 'warning'
-    case 'FULFILLED': return 'success'
-    case 'FAILED': return 'danger'
-    default: return 'info'
+    case 'PENDING':
+      return 'warning';
+    case 'FULFILLED':
+      return 'success';
+    case 'FAILED':
+      return 'danger';
+    default:
+      return 'info';
   }
-}
+};
 
 const getStatusText = (status: string) => {
   switch (status) {
-    case 'PENDING': return '待处理'
-    case 'FULFILLED': return '已处理'
-    case 'FAILED': return '处理失败'
-    default: return status
+    case 'PENDING':
+      return '待处理';
+    case 'FULFILLED':
+      return '已处理';
+    case 'FAILED':
+      return '处理失败';
+    default:
+      return status;
   }
-}
+};
 
 const formatDate = (dateString?: string) => {
-  if (!dateString) return '-'
-  return new Date(dateString).toLocaleDateString('zh-CN')
-}
+  if (!dateString) return '-';
+  return new Date(dateString).toLocaleDateString('zh-CN');
+};
 
-onMounted(fetchData)
+onMounted(fetchData);
 </script>
 
 <style scoped>
@@ -535,13 +639,22 @@ onMounted(fetchData)
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
   animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
 }
 
 .banner-content {
@@ -1131,29 +1244,29 @@ onMounted(fetchData)
   .dashboard {
     padding: 16px;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .banner-content {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .banner-icon {
     margin-left: 0;
     margin-top: 16px;
   }
-  
+
   .stat-card {
     min-height: auto;
   }
-  
+
   .action-item {
     padding: 12px;
   }
-  
+
   .action-icon {
     width: 40px;
     height: 40px;
