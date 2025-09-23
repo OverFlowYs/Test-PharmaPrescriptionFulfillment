@@ -1,5 +1,5 @@
-import type { AuditLog } from '../types/audit';
-import { api } from './client';
+import type { AuditLog } from "../types/audit";
+import { api } from "./client";
 
 export interface AuditLogFilters {
   patientId?: string;
@@ -9,12 +9,12 @@ export interface AuditLogFilters {
 
 export const getAuditLogs = (filters?: AuditLogFilters) => {
   const params = new URLSearchParams();
-  if (filters?.patientId) params.append('patientId', filters.patientId);
-  if (filters?.pharmacyId) params.append('pharmacyId', filters.pharmacyId);
-  if (filters?.status) params.append('status', filters.status);
+  if (filters?.patientId) params.append("patientId", filters.patientId);
+  if (filters?.pharmacyId) params.append("pharmacyId", filters.pharmacyId);
+  if (filters?.status) params.append("status", filters.status);
 
   const queryString = params.toString();
-  const url = queryString ? `/audit-logs?${queryString}` : '/audit-logs';
+  const url = queryString ? `/audit-logs?${queryString}` : "/audit-logs";
 
   return api<AuditLog[]>(url);
 };

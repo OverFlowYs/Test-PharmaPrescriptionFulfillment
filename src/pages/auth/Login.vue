@@ -45,7 +45,7 @@
             @click="handleLogin"
             class="login-btn"
           >
-            {{ loading ? '登录中...' : '登录' }}
+            {{ loading ? "登录中..." : "登录" }}
           </el-button>
         </el-form-item>
       </el-form>
@@ -64,13 +64,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
-import { User, Lock } from '@element-plus/icons-vue';
-import type { LoginForm } from '../../types/auth';
-import Captcha from '../../components/Captcha.vue';
-import { useAuthStore } from '../../stores/auth';
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
+import { User, Lock } from "@element-plus/icons-vue";
+import type { LoginForm } from "../../types/auth";
+import Captcha from "../../components/Captcha.vue";
+import { useAuthStore } from "../../stores/auth";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -79,28 +79,28 @@ const loading = ref(false);
 const captchaRef = ref();
 
 const form = reactive<LoginForm>({
-  username: '',
-  password: '',
-  captcha: '',
+  username: "",
+  password: "",
+  captcha: "",
 });
 
 const rules = {
   username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { required: true, message: "请输入用户名", trigger: "blur" },
     {
       min: 3,
       max: 20,
-      message: '用户名长度在 3 到 20 个字符',
-      trigger: 'blur',
+      message: "用户名长度在 3 到 20 个字符",
+      trigger: "blur",
     },
   ],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 20, message: '密码长度在 6 到 20 个字符', trigger: 'blur' },
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 6, max: 20, message: "密码长度在 6 到 20 个字符", trigger: "blur" },
   ],
   captcha: [
-    { required: true, message: '请输入验证码', trigger: 'blur' },
-    { len: 4, message: '验证码长度为 4 位', trigger: 'blur' },
+    { required: true, message: "请输入验证码", trigger: "blur" },
+    { len: 4, message: "验证码长度为 4 位", trigger: "blur" },
   ],
 };
 
@@ -116,7 +116,7 @@ const handleLogin = async () => {
 
     // 验证验证码
     if (captchaRef.value && !captchaRef.value.verifyCaptcha(form.captcha)) {
-      ElMessage.error('验证码错误');
+      ElMessage.error("验证码错误");
       captchaRef.value.refreshCaptcha();
       return;
     }
@@ -126,25 +126,25 @@ const handleLogin = async () => {
     const result = await authStore.loginUser(
       form.username,
       form.password,
-      form.captcha
+      form.captcha,
     );
 
     if (result.success) {
-      ElMessage.success('登录成功');
-      router.push('/');
+      ElMessage.success("登录成功");
+      router.push("/");
     } else {
-      ElMessage.error(result.message || '登录失败');
+      ElMessage.error(result.message || "登录失败");
       captchaRef.value?.refreshCaptcha();
     }
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
   } finally {
     loading.value = false;
   }
 };
 
 const goToRegister = () => {
-  router.push('/register');
+  router.push("/register");
 };
 </script>
 

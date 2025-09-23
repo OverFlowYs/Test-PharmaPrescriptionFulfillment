@@ -92,9 +92,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { ElMessage, ElMessageBox } from "element-plus";
 import {
   House,
   ShoppingBag,
@@ -106,8 +106,8 @@ import {
   ArrowDown,
   Setting,
   SwitchButton,
-} from '@element-plus/icons-vue';
-import { useAuthStore } from '../stores/auth';
+} from "@element-plus/icons-vue";
+import { useAuthStore } from "../stores/auth";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -118,7 +118,7 @@ const userAvatar = computed(() => {
 });
 
 const goToDashboard = () => {
-  router.push('/');
+  router.push("/");
 };
 
 const refreshData = () => {
@@ -128,23 +128,23 @@ const refreshData = () => {
 
 const handleCommand = async (command: string) => {
   switch (command) {
-    case 'profile':
-      ElMessage.info('个人资料功能开发中...');
+    case "profile":
+      ElMessage.info("个人资料功能开发中...");
       break;
-    case 'settings':
-      ElMessage.info('系统设置功能开发中...');
+    case "settings":
+      ElMessage.info("系统设置功能开发中...");
       break;
-    case 'logout':
+    case "logout":
       try {
-        await ElMessageBox.confirm('确定要退出登录吗？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
+        await ElMessageBox.confirm("确定要退出登录吗？", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
         });
 
         await authStore.logoutUser();
-        ElMessage.success('已退出登录');
-        router.push('/login');
+        ElMessage.success("已退出登录");
+        router.push("/login");
       } catch (error) {
         // 用户取消
       }

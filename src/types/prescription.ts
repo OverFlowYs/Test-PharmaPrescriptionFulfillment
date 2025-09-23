@@ -5,7 +5,7 @@ export type Prescription = {
   pharmacyId: string;
   pharmacyName?: string;
   drugs: PrescriptionDrug[];
-  status: 'PENDING' | 'FULFILLED' | 'FAILED';
+  status: "PENDING" | "FULFILLED" | "FAILED";
   createdAt?: string;
 };
 

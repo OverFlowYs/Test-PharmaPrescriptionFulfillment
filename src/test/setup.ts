@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import "@testing-library/jest-dom";
+import { vi } from "vitest";
 
 // Mock localStorage
 const localStorageMock = {
@@ -8,7 +8,7 @@ const localStorageMock = {
   removeItem: vi.fn(),
   clear: vi.fn(),
 };
-Object.defineProperty(window, 'localStorage', {
+Object.defineProperty(window, "localStorage", {
   value: localStorageMock,
 });
 
@@ -16,7 +16,7 @@ Object.defineProperty(window, 'localStorage', {
 globalThis.fetch = vi.fn();
 
 // Mock Element Plus components
-vi.mock('element-plus', () => ({
+vi.mock("element-plus", () => ({
   ElMessage: {
     success: vi.fn(),
     error: vi.fn(),
@@ -27,64 +27,64 @@ vi.mock('element-plus', () => ({
     confirm: vi.fn(),
   },
   ElButton: {
-    name: 'ElButton',
-    template: '<button><slot /></button>',
-    props: ['type', 'loading', 'size'],
+    name: "ElButton",
+    template: "<button><slot /></button>",
+    props: ["type", "loading", "size"],
   },
   ElInput: {
-    name: 'ElInput',
+    name: "ElInput",
     template:
       '<input v-bind="$attrs" v-model="modelValue" @input="$emit(\'input\', $event.target.value)" />',
-    props: ['modelValue', 'placeholder', 'type', 'maxlength'],
-    emits: ['input', 'update:modelValue'],
+    props: ["modelValue", "placeholder", "type", "maxlength"],
+    emits: ["input", "update:modelValue"],
   },
   ElInputNumber: {
-    name: 'ElInputNumber',
+    name: "ElInputNumber",
     template:
       '<input type="number" v-bind="$attrs" v-model="modelValue" @input="$emit(\'input\', $event.target.value)" />',
-    props: ['modelValue', 'min'],
-    emits: ['input', 'update:modelValue'],
+    props: ["modelValue", "min"],
+    emits: ["input", "update:modelValue"],
   },
   ElDatePicker: {
-    name: 'ElDatePicker',
+    name: "ElDatePicker",
     template:
       '<input type="date" v-bind="$attrs" v-model="modelValue" @input="$emit(\'input\', $event.target.value)" />',
-    props: ['modelValue', 'type', 'valueFormat'],
-    emits: ['input', 'update:modelValue'],
+    props: ["modelValue", "type", "valueFormat"],
+    emits: ["input", "update:modelValue"],
   },
   ElTable: {
-    name: 'ElTable',
+    name: "ElTable",
     template: '<div class="el-table"><slot /></div>',
-    props: ['data', 'loading'],
+    props: ["data", "loading"],
   },
   ElTableColumn: {
-    name: 'ElTableColumn',
+    name: "ElTableColumn",
     template: '<div class="el-table-column"><slot /></div>',
-    props: ['prop', 'label', 'width'],
+    props: ["prop", "label", "width"],
   },
   ElTag: {
-    name: 'ElTag',
+    name: "ElTag",
     template: '<span class="el-tag" :class="`el-tag--${type}`"><slot /></span>',
-    props: ['type'],
+    props: ["type"],
   },
   ElDialog: {
-    name: 'ElDialog',
+    name: "ElDialog",
     template: '<div v-if="modelValue" class="el-dialog"><slot /></div>',
-    props: ['modelValue', 'title', 'width'],
-    emits: ['update:modelValue', 'close'],
+    props: ["modelValue", "title", "width"],
+    emits: ["update:modelValue", "close"],
   },
   ElForm: {
-    name: 'ElForm',
+    name: "ElForm",
     template: '<form class="el-form"><slot /></form>',
-    props: ['model', 'rules', 'ref'],
+    props: ["model", "rules", "ref"],
   },
   ElFormItem: {
-    name: 'ElFormItem',
+    name: "ElFormItem",
     template: '<div class="el-form-item"><slot /></div>',
-    props: ['prop', 'label', 'rules'],
+    props: ["prop", "label", "rules"],
   },
   ElIcon: {
-    name: 'ElIcon',
+    name: "ElIcon",
     template: '<span class="el-icon"><slot /></span>',
   },
 }));

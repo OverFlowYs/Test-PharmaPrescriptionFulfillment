@@ -268,15 +268,15 @@ git commit -m "docs: 更新 API 文档"
 在 `src/router.ts` 中配置路由：
 
 ```typescript
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'Dashboard',
-      component: () => import('./pages/Dashboard.vue'),
+      path: "/",
+      name: "Dashboard",
+      component: () => import("./pages/Dashboard.vue"),
     },
     // ... 其他路由
   ],

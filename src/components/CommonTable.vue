@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from "vue";
 
 export interface TableColumn {
   prop: string;
@@ -100,17 +100,17 @@ const pageSize = ref(props.pagination?.pageSize || 10);
 const total = computed(() => props.pagination?.total || 0);
 
 const getValue = (row: any, prop: string) => {
-  return prop.split('.').reduce((obj, key) => obj?.[key], row);
+  return prop.split(".").reduce((obj, key) => obj?.[key], row);
 };
 
 const handleSizeChange = (size: number) => {
   pageSize.value = size;
-  emit('pageChange', currentPage.value, size);
+  emit("pageChange", currentPage.value, size);
 };
 
 const handleCurrentChange = (page: number) => {
   currentPage.value = page;
-  emit('pageChange', page, pageSize.value);
+  emit("pageChange", page, pageSize.value);
 };
 </script>
 

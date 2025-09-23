@@ -89,12 +89,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from "vue";
 
 export interface DetailField {
   key: string;
   label: string;
-  type?: 'text' | 'date' | 'status' | 'custom';
+  type?: "text" | "date" | "status" | "custom";
   slot?: string;
 }
 
@@ -120,26 +120,26 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
+  "update:modelValue": [value: boolean];
   close: [];
 }>();
 
 const visible = computed({
   get: () => props.modelValue,
-  set: value => emit('update:modelValue', value),
+  set: (value) => emit("update:modelValue", value),
 });
 
 const getValue = (obj: any, key: string) => {
-  return key.split('.').reduce((o, k) => o?.[k], obj);
+  return key.split(".").reduce((o, k) => o?.[k], obj);
 };
 
 const formatValue = (value: any, type?: string) => {
-  if (value === null || value === undefined) return '-';
+  if (value === null || value === undefined) return "-";
 
   switch (type) {
-    case 'date':
-      return new Date(value).toLocaleString('zh-CN');
-    case 'status':
+    case "date":
+      return new Date(value).toLocaleString("zh-CN");
+    case "status":
       return value;
     default:
       return value;
@@ -147,8 +147,8 @@ const formatValue = (value: any, type?: string) => {
 };
 
 const handleClose = () => {
-  emit('update:modelValue', false);
-  emit('close');
+  emit("update:modelValue", false);
+  emit("close");
 };
 </script>
 

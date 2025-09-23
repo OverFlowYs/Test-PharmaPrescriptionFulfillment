@@ -335,10 +335,10 @@
               <template #default="{ row }">
                 <div class="patient-info">
                   <div class="patient-avatar">
-                    {{ row.patientName?.charAt(0) || '?' }}
+                    {{ row.patientName?.charAt(0) || "?" }}
                   </div>
                   <span class="patient-name">{{
-                    row.patientName || '未知'
+                    row.patientName || "未知"
                   }}</span>
                 </div>
               </template>
@@ -400,7 +400,7 @@
                   size="small"
                   class="status-tag"
                 >
-                  {{ row.stock < 10 ? '库存不足' : '库存偏低' }}
+                  {{ row.stock < 10 ? "库存不足" : "库存偏低" }}
                 </el-tag>
               </template>
             </el-table-column>
@@ -412,16 +412,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { getDrugs } from '../api/drugs';
-import { getPharmacies } from '../api/pharmacies';
-import { getPrescriptions } from '../api/prescriptions';
-import { getAuditLogs } from '../api/audits';
-import type { Drug } from '../types/drug';
-import type { Pharmacy } from '../types/pharmacy';
-import type { Prescription } from '../types/prescription';
-import type { AuditLog } from '../types/audit';
+import { onMounted, ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { getDrugs } from "../api/drugs";
+import { getPharmacies } from "../api/pharmacies";
+import { getPrescriptions } from "../api/prescriptions";
+import { getAuditLogs } from "../api/audits";
+import type { Drug } from "../types/drug";
+import type { Pharmacy } from "../types/pharmacy";
+import type { Prescription } from "../types/prescription";
+import type { AuditLog } from "../types/audit";
 import {
   ShoppingBag,
   Shop,
@@ -432,7 +432,7 @@ import {
   Warning,
   InfoFilled,
   ArrowRight,
-} from '@element-plus/icons-vue';
+} from "@element-plus/icons-vue";
 
 const router = useRouter();
 
@@ -445,7 +445,7 @@ const auditLogs = ref<AuditLog[]>([]);
 const stats = computed(() => ({
   drugs: {
     total: drugs.value.length,
-    expired: drugs.value.filter(d => new Date(d.expiry) <= new Date()).length,
+    expired: drugs.value.filter((d) => new Date(d.expiry) <= new Date()).length,
   },
   pharmacies: {
     total: pharmacies.value.length,
@@ -453,13 +453,14 @@ const stats = computed(() => ({
   },
   prescriptions: {
     total: prescriptions.value.length,
-    pending: prescriptions.value.filter(p => p.status === 'PENDING').length,
-    fulfilled: prescriptions.value.filter(p => p.status === 'FULFILLED').length,
+    pending: prescriptions.value.filter((p) => p.status === "PENDING").length,
+    fulfilled: prescriptions.value.filter((p) => p.status === "FULFILLED")
+      .length,
   },
   audits: {
     total: auditLogs.value.length,
-    failed: auditLogs.value.filter(a => a.status === 'FAILED').length,
-    success: auditLogs.value.filter(a => a.status === 'SUCCESS').length,
+    failed: auditLogs.value.filter((a) => a.status === "FAILED").length,
+    success: auditLogs.value.filter((a) => a.status === "SUCCESS").length,
   },
 }));
 
@@ -467,8 +468,8 @@ const stats = computed(() => ({
 const totalAllocatedDrugs = computed(() =>
   pharmacies.value.reduce(
     (total, pharmacy) => total + pharmacy.allocatedDrugs.length,
-    0
-  )
+    0,
+  ),
 );
 
 // 最近处方（取前5个）
@@ -476,18 +477,18 @@ const recentPrescriptions = computed(() =>
   prescriptions.value
     .sort(
       (a, b) =>
-        new Date(b.createdAt || '').getTime() -
-        new Date(a.createdAt || '').getTime()
+        new Date(b.createdAt || "").getTime() -
+        new Date(a.createdAt || "").getTime(),
     )
-    .slice(0, 5)
+    .slice(0, 5),
 );
 
 // 库存预警药品
 const lowStockDrugs = computed(() =>
   drugs.value
-    .filter(d => d.stock < 20) // 库存低于20的药品
+    .filter((d) => d.stock < 20) // 库存低于20的药品
     .sort((a, b) => a.stock - b.stock)
-    .slice(0, 5)
+    .slice(0, 5),
 );
 
 // 处方状态分布数据
@@ -496,29 +497,30 @@ const prescriptionStatusData = computed(() => {
   if (total === 0) return [];
 
   const statusCounts = {
-    PENDING: prescriptions.value.filter(p => p.status === 'PENDING').length,
-    FULFILLED: prescriptions.value.filter(p => p.status === 'FULFILLED').length,
-    FAILED: prescriptions.value.filter(p => p.status === 'FAILED').length,
+    PENDING: prescriptions.value.filter((p) => p.status === "PENDING").length,
+    FULFILLED: prescriptions.value.filter((p) => p.status === "FULFILLED")
+      .length,
+    FAILED: prescriptions.value.filter((p) => p.status === "FAILED").length,
   };
 
   return [
     {
-      name: '待处理',
+      name: "待处理",
       value: statusCounts.PENDING,
       percentage: (statusCounts.PENDING / total) * 100,
-      color: '#e6a23c',
+      color: "#e6a23c",
     },
     {
-      name: '已处理',
+      name: "已处理",
       value: statusCounts.FULFILLED,
       percentage: (statusCounts.FULFILLED / total) * 100,
-      color: '#67c23a',
+      color: "#67c23a",
     },
     {
-      name: '处理失败',
+      name: "处理失败",
       value: statusCounts.FAILED,
       percentage: (statusCounts.FAILED / total) * 100,
-      color: '#f56c6c',
+      color: "#f56c6c",
     },
   ];
 });
@@ -529,29 +531,29 @@ const drugStockData = computed(() => {
   if (total === 0) return [];
 
   const stockCounts = {
-    normal: drugs.value.filter(d => d.stock >= 50).length,
-    low: drugs.value.filter(d => d.stock >= 20 && d.stock < 50).length,
-    critical: drugs.value.filter(d => d.stock < 20).length,
+    normal: drugs.value.filter((d) => d.stock >= 50).length,
+    low: drugs.value.filter((d) => d.stock >= 20 && d.stock < 50).length,
+    critical: drugs.value.filter((d) => d.stock < 20).length,
   };
 
   return [
     {
-      name: '库存充足',
+      name: "库存充足",
       value: stockCounts.normal,
       percentage: (stockCounts.normal / total) * 100,
-      color: '#67c23a',
+      color: "#67c23a",
     },
     {
-      name: '库存偏低',
+      name: "库存偏低",
       value: stockCounts.low,
       percentage: (stockCounts.low / total) * 100,
-      color: '#e6a23c',
+      color: "#e6a23c",
     },
     {
-      name: '库存不足',
+      name: "库存不足",
       value: stockCounts.critical,
       percentage: (stockCounts.critical / total) * 100,
-      color: '#f56c6c',
+      color: "#f56c6c",
     },
   ];
 });
@@ -571,44 +573,44 @@ const fetchData = async () => {
     prescriptions.value = prescriptionsData;
     auditLogs.value = auditsData;
   } catch (error) {
-    console.error('Failed to fetch dashboard data:', error);
+    console.error("Failed to fetch dashboard data:", error);
   }
 };
 
-const goToDrugs = () => router.push('/drugs');
-const goToPharmacies = () => router.push('/pharmacies');
-const goToPrescriptions = () => router.push('/prescriptions');
-const goToAudits = () => router.push('/audits');
+const goToDrugs = () => router.push("/drugs");
+const goToPharmacies = () => router.push("/pharmacies");
+const goToPrescriptions = () => router.push("/prescriptions");
+const goToAudits = () => router.push("/audits");
 
 const getStatusType = (status: string) => {
   switch (status) {
-    case 'PENDING':
-      return 'warning';
-    case 'FULFILLED':
-      return 'success';
-    case 'FAILED':
-      return 'danger';
+    case "PENDING":
+      return "warning";
+    case "FULFILLED":
+      return "success";
+    case "FAILED":
+      return "danger";
     default:
-      return 'info';
+      return "info";
   }
 };
 
 const getStatusText = (status: string) => {
   switch (status) {
-    case 'PENDING':
-      return '待处理';
-    case 'FULFILLED':
-      return '已处理';
-    case 'FAILED':
-      return '处理失败';
+    case "PENDING":
+      return "待处理";
+    case "FULFILLED":
+      return "已处理";
+    case "FAILED":
+      return "处理失败";
     default:
       return status;
   }
 };
 
 const formatDate = (dateString?: string) => {
-  if (!dateString) return '-';
-  return new Date(dateString).toLocaleDateString('zh-CN');
+  if (!dateString) return "-";
+  return new Date(dateString).toLocaleDateString("zh-CN");
 };
 
 onMounted(fetchData);
@@ -633,7 +635,7 @@ onMounted(fetchData);
 }
 
 .welcome-banner::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
@@ -710,7 +712,7 @@ onMounted(fetchData);
 }
 
 .stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1168,7 +1170,7 @@ onMounted(fetchData);
 }
 
 .table-id {
-  font-family: 'Monaco', 'Menlo', monospace;
+  font-family: "Monaco", "Menlo", monospace;
   font-size: 12px;
   color: #666;
   background: #f8f9fa;

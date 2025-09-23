@@ -65,7 +65,7 @@
             @click="handleRegister"
             class="register-btn"
           >
-            {{ loading ? '注册中...' : '注册' }}
+            {{ loading ? "注册中..." : "注册" }}
           </el-button>
         </el-form-item>
       </el-form>
@@ -81,12 +81,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
-import { User, Lock, Message } from '@element-plus/icons-vue';
-import type { RegisterForm } from '../../types/auth';
-import Captcha from '../../components/Captcha.vue';
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
+import { User, Lock, Message } from "@element-plus/icons-vue";
+import type { RegisterForm } from "../../types/auth";
+import Captcha from "../../components/Captcha.vue";
 
 const router = useRouter();
 const formRef = ref();
@@ -94,20 +94,20 @@ const loading = ref(false);
 const captchaRef = ref();
 
 const form = reactive<RegisterForm>({
-  username: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  captcha: '',
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  captcha: "",
 });
 
 const validateConfirmPassword = (
   _rule: any,
   value: string,
-  callback: Function
+  callback: Function,
 ) => {
   if (value !== form.password) {
-    callback(new Error('两次输入的密码不一致'));
+    callback(new Error("两次输入的密码不一致"));
   } else {
     callback();
   }
@@ -115,39 +115,39 @@ const validateConfirmPassword = (
 
 const rules = {
   username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { required: true, message: "请输入用户名", trigger: "blur" },
     {
       min: 3,
       max: 20,
-      message: '用户名长度在 3 到 20 个字符',
-      trigger: 'blur',
+      message: "用户名长度在 3 到 20 个字符",
+      trigger: "blur",
     },
     {
       pattern: /^[a-zA-Z0-9_]+$/,
-      message: '用户名只能包含字母、数字和下划线',
-      trigger: 'blur',
+      message: "用户名只能包含字母、数字和下划线",
+      trigger: "blur",
     },
   ],
   email: [
-    { required: true, message: '请输入邮箱', trigger: 'blur' },
-    { type: 'email', message: '请输入正确的邮箱格式', trigger: 'blur' },
+    { required: true, message: "请输入邮箱", trigger: "blur" },
+    { type: "email", message: "请输入正确的邮箱格式", trigger: "blur" },
   ],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 20, message: '密码长度在 6 到 20 个字符', trigger: 'blur' },
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 6, max: 20, message: "密码长度在 6 到 20 个字符", trigger: "blur" },
     {
       pattern: /^(?=.*[a-zA-Z])(?=.*\d)/,
-      message: '密码必须包含字母和数字',
-      trigger: 'blur',
+      message: "密码必须包含字母和数字",
+      trigger: "blur",
     },
   ],
   confirmPassword: [
-    { required: true, message: '请确认密码', trigger: 'blur' },
-    { validator: validateConfirmPassword, trigger: 'blur' },
+    { required: true, message: "请确认密码", trigger: "blur" },
+    { validator: validateConfirmPassword, trigger: "blur" },
   ],
   captcha: [
-    { required: true, message: '请输入验证码', trigger: 'blur' },
-    { len: 4, message: '验证码长度为 4 位', trigger: 'blur' },
+    { required: true, message: "请输入验证码", trigger: "blur" },
+    { len: 4, message: "验证码长度为 4 位", trigger: "blur" },
   ],
 };
 
@@ -163,7 +163,7 @@ const handleRegister = async () => {
 
     // 验证验证码
     if (captchaRef.value && !captchaRef.value.verifyCaptcha(form.captcha)) {
-      ElMessage.error('验证码错误');
+      ElMessage.error("验证码错误");
       captchaRef.value.refreshCaptcha();
       return;
     }
@@ -171,12 +171,12 @@ const handleRegister = async () => {
     loading.value = true;
 
     // 模拟注册
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     // 检查用户名是否已存在
-    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
     if (existingUsers.find((user: any) => user.username === form.username)) {
-      ElMessage.error('用户名已存在');
+      ElMessage.error("用户名已存在");
       captchaRef.value?.refreshCaptcha();
       return;
     }
@@ -186,24 +186,24 @@ const handleRegister = async () => {
       id: Date.now().toString(),
       username: form.username,
       email: form.email,
-      role: 'user',
+      role: "user",
       createdAt: new Date().toISOString(),
     };
 
     existingUsers.push(newUser);
-    localStorage.setItem('users', JSON.stringify(existingUsers));
+    localStorage.setItem("users", JSON.stringify(existingUsers));
 
-    ElMessage.success('注册成功，请登录');
-    router.push('/login');
+    ElMessage.success("注册成功，请登录");
+    router.push("/login");
   } catch (error) {
-    console.error('Register error:', error);
+    console.error("Register error:", error);
   } finally {
     loading.value = false;
   }
 };
 
 const goToLogin = () => {
-  router.push('/login');
+  router.push("/login");
 };
 </script>
 

@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { addDrug } from '../../api/drugs';
-import { ElMessage } from 'element-plus';
+import { ref } from "vue";
+import { addDrug } from "../../api/drugs";
+import { ElMessage } from "element-plus";
 
 defineProps<{ modelValue: boolean }>();
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: boolean): void;
-  (e: 'success'): void;
+  (e: "update:modelValue", v: boolean): void;
+  (e: "success"): void;
 }>();
 const form = ref({
-  name: '',
-  manufacturer: '',
-  batch: '',
-  expiry: '',
+  name: "",
+  manufacturer: "",
+  batch: "",
+  expiry: "",
   stock: 0,
   limit: 0,
 });
 const loading = ref(false);
 const rules = {
-  name: [{ required: true, message: '必填', trigger: 'blur' }],
-  batch: [{ required: true, message: '必填', trigger: 'blur' }],
-  expiry: [{ required: true, message: '必填', trigger: 'change' }],
+  name: [{ required: true, message: "必填", trigger: "blur" }],
+  batch: [{ required: true, message: "必填", trigger: "blur" }],
+  expiry: [{ required: true, message: "必填", trigger: "change" }],
   stock: [
-    { type: 'number', required: true, message: '必填', trigger: 'change' },
+    { type: "number", required: true, message: "必填", trigger: "change" },
   ],
   limit: [
-    { type: 'number', required: true, message: '必填', trigger: 'change' },
+    { type: "number", required: true, message: "必填", trigger: "change" },
   ],
 };
 const formRef = ref();
@@ -35,11 +35,11 @@ const onSubmit = async () => {
   loading.value = true;
   try {
     await addDrug({ ...form.value });
-    ElMessage.success('新增成功');
-    emit('success');
-    emit('update:modelValue', false);
+    ElMessage.success("新增成功");
+    emit("success");
+    emit("update:modelValue", false);
   } catch (e: any) {
-    ElMessage.error(e?.message || '提交失败');
+    ElMessage.error(e?.message || "提交失败");
   } finally {
     loading.value = false;
   }

@@ -19,26 +19,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue';
-import { Refresh } from '@element-plus/icons-vue';
+import { ref, onMounted, nextTick } from "vue";
+import { Refresh } from "@element-plus/icons-vue";
 
 const props = defineProps<{
   modelValue: string;
 }>();
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void;
-  (e: 'change', value: string): void;
+  (e: "update:modelValue", value: string): void;
+  (e: "change", value: string): void;
 }>();
 
 const canvasRef = ref<HTMLCanvasElement>();
 const inputValue = ref(props.modelValue);
-const captchaText = ref('');
+const captchaText = ref("");
 
 // 生成随机验证码
 const generateCaptcha = () => {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let result = "";
   for (let i = 0; i < 4; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
@@ -50,14 +50,14 @@ const drawCaptcha = () => {
   if (!canvasRef.value) return;
 
   const canvas = canvasRef.value;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
   // 清空画布
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // 设置背景
-  ctx.fillStyle = '#f5f5f5';
+  ctx.fillStyle = "#f5f5f5";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // 添加干扰线
@@ -78,15 +78,15 @@ const drawCaptcha = () => {
       Math.random() * canvas.height,
       1,
       0,
-      2 * Math.PI
+      2 * Math.PI,
     );
     ctx.fill();
   }
 
   // 绘制文字
-  ctx.font = 'bold 20px Arial';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
+  ctx.font = "bold 20px Arial";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
 
   for (let i = 0; i < captchaText.value.length; i++) {
     const x = (canvas.width / 4) * (i + 0.5);
@@ -108,19 +108,19 @@ const drawCaptcha = () => {
 const refreshCaptcha = () => {
   captchaText.value = generateCaptcha();
   drawCaptcha();
-  inputValue.value = '';
-  emit('update:modelValue', '');
-  emit('change', '');
+  inputValue.value = "";
+  emit("update:modelValue", "");
+  emit("change", "");
 };
 
 // 输入处理
 const onInput = (value: string) => {
-  emit('update:modelValue', value);
-  emit('change', value);
+  emit("update:modelValue", value);
+  emit("change", value);
 };
 
 const onEnter = () => {
-  emit('change', inputValue.value);
+  emit("change", inputValue.value);
 };
 
 // 验证验证码

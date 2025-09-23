@@ -5,7 +5,7 @@ export type AuditLog = {
   patientName?: string;
   pharmacyId: string;
   pharmacyName?: string;
-  status: 'SUCCESS' | 'FAILED';
+  status: "SUCCESS" | "FAILED";
   drugsRequested: PrescriptionDrug[];
   drugsDispensed: PrescriptionDrug[];
   failureReasons?: string[];
